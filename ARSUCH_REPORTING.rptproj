@@ -52,14 +52,19 @@
     <DataSource Include="ARSUCH_DWH.rds" />
   </ItemGroup>
   <ItemGroup>
+    <Report Include="M1-1-1.rdl" />
     <Report Include="M1-2-1.rdl" />
+    <Report Include="M1-2-2.rdl" />
+    <Report Include="M1-3-1.rdl" />
     <Report Include="M1-4-1.rdl" />
+    <Report Include="M1-4-2.rdl" />
     <Report Include="M2-1-1.rdl" />
     <Report Include="M2-2-1.rdl" />
     <Report Include="M3-1-1.rdl" />
     <Report Include="M3-2-1.rdl" />
     <Report Include="M3-3-1.rdl" />
     <Report Include="M4-1-1.rdl" />
+    <Report Include="M4-2-1.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>

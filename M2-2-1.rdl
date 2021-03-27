@@ -634,7 +634,7 @@
             <Value>=Parameters!CURSONombreCurso.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText> SELECT NON EMPTY { [Measures].[Satisfaccion Didactica], [Measures].[Satisfaccion Evaluacion], [Measures].[Satisfaccion Materiales], [Measures].[Satisfaccion Session Video] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [TIEMPO].[JFechaCompleta].[FechaCompleta].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+        <CommandText> SELECT NON EMPTY { [Measures].[Satisfaccion Didactica], [Measures].[Satisfaccion Evaluacion], [Measures].[Satisfaccion Materiales], [Measures].[Satisfaccion Session Video] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [TIEMPO].[FechaCompleta].[FechaCompleta].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
         <rd:DesignerState>
           <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
             <CommandType>MDX</CommandType>
@@ -699,10 +699,10 @@
                   <Item>
                     <ID xsi:type="Level">
                       <DimensionName>TIEMPO</DimensionName>
-                      <HierarchyName>JFechaCompleta</HierarchyName>
-                      <HierarchyUniqueName>[TIEMPO].[JFechaCompleta]</HierarchyUniqueName>
+                      <HierarchyName>FechaCompleta</HierarchyName>
+                      <HierarchyUniqueName>[TIEMPO].[FechaCompleta]</HierarchyUniqueName>
                       <LevelName>FechaCompleta</LevelName>
-                      <UniqueName>[TIEMPO].[JFechaCompleta].[FechaCompleta]</UniqueName>
+                      <UniqueName>[TIEMPO].[FechaCompleta].[FechaCompleta]</UniqueName>
                     </ID>
                     <ItemCaption>FechaCompleta</ItemCaption>
                     <UniqueName>true</UniqueName>
@@ -841,7 +841,7 @@
               </QueryProperties>
             </QuerySpecification>
             <Query>
-              <Statement> SELECT NON EMPTY { [Measures].[Satisfaccion Didactica], [Measures].[Satisfaccion Evaluacion], [Measures].[Satisfaccion Materiales], [Measures].[Satisfaccion Session Video] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [TIEMPO].[JFechaCompleta].[FechaCompleta].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
+              <Statement> SELECT NON EMPTY { [Measures].[Satisfaccion Didactica], [Measures].[Satisfaccion Evaluacion], [Measures].[Satisfaccion Materiales], [Measures].[Satisfaccion Session Video] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [TIEMPO].[FechaCompleta].[FechaCompleta].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
               <ParameterDefinitions>
                 <ParameterDefinition>
                   <Name>TIEMPOAnio</Name>
@@ -983,7 +983,7 @@
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="FechaCompleta">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[JFechaCompleta].[FechaCompleta]" /&gt;</DataField>
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[FechaCompleta].[FechaCompleta]" /&gt;</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Satisfaccion_Didactica">
@@ -1004,804 +1004,53 @@
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="SatisfaccionEvaluacion">
-      <Query>
-        <DataSourceName>ARSHUCH</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="TIEMPOAnio">
-            <Value>=Parameters!TIEMPOAnio.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="TIEMPOSemestre">
-            <Value>=Parameters!TIEMPOSemestre.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="CICLOValorCiclo">
-            <Value>=Parameters!CICLOValorCiclo.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="CARRERANombreCarrera">
-            <Value>=Parameters!CARRERANombreCarrera.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="CURSONombreCurso">
-            <Value>=Parameters!CURSONombreCurso.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText> SELECT NON EMPTY { [Measures].[Satisfaccion Evaluacion] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
-        <rd:DesignerState>
-          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
-            <CommandType>MDX</CommandType>
-            <QuerySpecification xsi:type="MDXQuerySpecification">
-              <Select>
-                <Items>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>TIEMPO</DimensionName>
-                      <HierarchyName>Anio</HierarchyName>
-                      <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
-                      <LevelName>Anio</LevelName>
-                      <UniqueName>[TIEMPO].[Anio].[Anio]</UniqueName>
-                    </ID>
-                    <ItemCaption>Anio</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>TIEMPO</DimensionName>
-                      <HierarchyName>Semestre</HierarchyName>
-                      <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
-                      <LevelName>Semestre</LevelName>
-                      <UniqueName>[TIEMPO].[Semestre].[Semestre]</UniqueName>
-                    </ID>
-                    <ItemCaption>Semestre</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>CICLO</DimensionName>
-                      <HierarchyName>ValorCiclo</HierarchyName>
-                      <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
-                      <LevelName>ValorCiclo</LevelName>
-                      <UniqueName>[CICLO].[ValorCiclo].[ValorCiclo]</UniqueName>
-                    </ID>
-                    <ItemCaption>ValorCiclo</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>CARRERA</DimensionName>
-                      <HierarchyName>NombreCarrera</HierarchyName>
-                      <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
-                      <LevelName>NombreCarrera</LevelName>
-                      <UniqueName>[CARRERA].[NombreCarrera].[NombreCarrera]</UniqueName>
-                    </ID>
-                    <ItemCaption>NombreCarrera</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>CURSO</DimensionName>
-                      <HierarchyName>NombreCurso</HierarchyName>
-                      <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
-                      <LevelName>NombreCurso</LevelName>
-                      <UniqueName>[CURSO].[NombreCurso].[NombreCurso]</UniqueName>
-                    </ID>
-                    <ItemCaption>NombreCurso</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Measure">
-                      <MeasureName>Satisfaccion Evaluacion</MeasureName>
-                      <UniqueName>[Measures].[Satisfaccion Evaluacion]</UniqueName>
-                    </ID>
-                    <ItemCaption>Satisfaccion Evaluacion</ItemCaption>
-                    <BackColor>true</BackColor>
-                    <ForeColor>true</ForeColor>
-                    <FontFamily>true</FontFamily>
-                    <FontSize>true</FontSize>
-                    <FontWeight>true</FontWeight>
-                    <FontStyle>true</FontStyle>
-                    <FontDecoration>true</FontDecoration>
-                    <FormattedValue>true</FormattedValue>
-                    <FormatString>true</FormatString>
-                  </Item>
-                </Items>
-              </Select>
-              <AutoExecute>false</AutoExecute>
-              <From>CuboSatisfaccionPedagogica</From>
-              <Filter>
-                <FilterItems>
-                  <FilterItem>
-                    <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[TIEMPO].[Anio].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                  <FilterItem>
-                    <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[TIEMPO].[Semestre].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                  <FilterItem>
-                    <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[CICLO].[ValorCiclo].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                  <FilterItem>
-                    <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[CARRERA].[NombreCarrera].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                  <FilterItem>
-                    <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[CURSO].[NombreCurso].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                </FilterItems>
-              </Filter>
-              <Calculations />
-              <Aggregates />
-              <QueryProperties>
-                <IncludeMemberValue>true</IncludeMemberValue>
-              </QueryProperties>
-            </QuerySpecification>
-            <Query>
-              <Statement> SELECT NON EMPTY { [Measures].[Satisfaccion Evaluacion] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
-              <ParameterDefinitions>
-                <ParameterDefinition>
-                  <Name>TIEMPOAnio</Name>
-                  <DefaultValues>
-                    <DefaultValue>[TIEMPO].[Anio].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>Anio</Caption>
-                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboSatisfaccionPedagogica]</Statement>
-                    <ParameterizedStatement>
-                      <ReferencedParameters />
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-                <ParameterDefinition>
-                  <Name>TIEMPOSemestre</Name>
-                  <DefaultValues>
-                    <DefaultValue>[TIEMPO].[Semestre].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>Semestre</Caption>
-                  <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
-                    <ParameterizedStatement>
-                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
-                      <ReferencedParameters>
-                        <ReferencedParameter>
-                          <Name>TIEMPOAnio</Name>
-                        </ReferencedParameter>
-                      </ReferencedParameters>
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-                <ParameterDefinition>
-                  <Name>CICLOValorCiclo</Name>
-                  <DefaultValues>
-                    <DefaultValue>[CICLO].[ValorCiclo].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>ValorCiclo</Caption>
-                  <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</Statement>
-                    <ParameterizedStatement>
-                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</Statement>
-                      <ReferencedParameters>
-                        <ReferencedParameter>
-                          <Name>TIEMPOAnio</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>TIEMPOSemestre</Name>
-                        </ReferencedParameter>
-                      </ReferencedParameters>
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-                <ParameterDefinition>
-                  <Name>CARRERANombreCarrera</Name>
-                  <DefaultValues>
-                    <DefaultValue>[CARRERA].[NombreCarrera].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>NombreCarrera</Caption>
-                  <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))</Statement>
-                    <ParameterizedStatement>
-                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))</Statement>
-                      <ReferencedParameters>
-                        <ReferencedParameter>
-                          <Name>TIEMPOAnio</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>TIEMPOSemestre</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>CICLOValorCiclo</Name>
-                        </ReferencedParameter>
-                      </ReferencedParameters>
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-                <ParameterDefinition>
-                  <Name>CURSONombreCurso</Name>
-                  <DefaultValues>
-                    <DefaultValue>[CURSO].[NombreCurso].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>NombreCurso</Caption>
-                  <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CURSO].[NombreCurso].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CURSO].[NombreCurso].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CURSO].[NombreCurso].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CURSO].[NombreCurso].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))</Statement>
-                    <ParameterizedStatement>
-                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CURSO].[NombreCurso].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CURSO].[NombreCurso].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CURSO].[NombreCurso].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CURSO].[NombreCurso].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))</Statement>
-                      <ReferencedParameters>
-                        <ReferencedParameter>
-                          <Name>TIEMPOAnio</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>TIEMPOSemestre</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>CICLOValorCiclo</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>CARRERANombreCarrera</Name>
-                        </ReferencedParameter>
-                      </ReferencedParameters>
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-              </ParameterDefinitions>
-            </Query>
-          </QueryDefinition>
-        </rd:DesignerState>
-      </Query>
-      <Fields>
-        <Field Name="Anio">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Anio].[Anio]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Semestre">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Semestre].[Semestre]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ValorCiclo">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CICLO].[ValorCiclo].[ValorCiclo]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NombreCarrera">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CARRERA].[NombreCarrera].[NombreCarrera]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NombreCurso">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CURSO].[NombreCurso].[NombreCurso]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Satisfaccion_Evaluacion">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Satisfaccion Evaluacion]" /&gt;</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="SatisfaccionMateriales">
-      <Query>
-        <DataSourceName>ARSHUCH</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="TIEMPOAnio">
-            <Value>=Parameters!TIEMPOAnio.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="TIEMPOSemestre">
-            <Value>=Parameters!TIEMPOSemestre.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="CICLOValorCiclo">
-            <Value>=Parameters!CICLOValorCiclo.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="CARRERANombreCarrera">
-            <Value>=Parameters!CARRERANombreCarrera.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="CURSONombreCurso">
-            <Value>=Parameters!CURSONombreCurso.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText> SELECT NON EMPTY { [Measures].[Satisfaccion Materiales] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [TIEMPO].[FechaCompleta].[FechaCompleta].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
-        <rd:DesignerState>
-          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
-            <CommandType>MDX</CommandType>
-            <QuerySpecification xsi:type="MDXQuerySpecification">
-              <Select>
-                <Items>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>TIEMPO</DimensionName>
-                      <HierarchyName>Anio</HierarchyName>
-                      <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
-                      <LevelName>Anio</LevelName>
-                      <UniqueName>[TIEMPO].[Anio].[Anio]</UniqueName>
-                    </ID>
-                    <ItemCaption>Anio</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>TIEMPO</DimensionName>
-                      <HierarchyName>Semestre</HierarchyName>
-                      <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
-                      <LevelName>Semestre</LevelName>
-                      <UniqueName>[TIEMPO].[Semestre].[Semestre]</UniqueName>
-                    </ID>
-                    <ItemCaption>Semestre</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>CICLO</DimensionName>
-                      <HierarchyName>ValorCiclo</HierarchyName>
-                      <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
-                      <LevelName>ValorCiclo</LevelName>
-                      <UniqueName>[CICLO].[ValorCiclo].[ValorCiclo]</UniqueName>
-                    </ID>
-                    <ItemCaption>ValorCiclo</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>CARRERA</DimensionName>
-                      <HierarchyName>NombreCarrera</HierarchyName>
-                      <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
-                      <LevelName>NombreCarrera</LevelName>
-                      <UniqueName>[CARRERA].[NombreCarrera].[NombreCarrera]</UniqueName>
-                    </ID>
-                    <ItemCaption>NombreCarrera</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>CURSO</DimensionName>
-                      <HierarchyName>NombreCurso</HierarchyName>
-                      <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
-                      <LevelName>NombreCurso</LevelName>
-                      <UniqueName>[CURSO].[NombreCurso].[NombreCurso]</UniqueName>
-                    </ID>
-                    <ItemCaption>NombreCurso</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>TIEMPO</DimensionName>
-                      <HierarchyName>FechaCompleta</HierarchyName>
-                      <HierarchyUniqueName>[TIEMPO].[FechaCompleta]</HierarchyUniqueName>
-                      <LevelName>FechaCompleta</LevelName>
-                      <UniqueName>[TIEMPO].[FechaCompleta].[FechaCompleta]</UniqueName>
-                    </ID>
-                    <ItemCaption>FechaCompleta</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Measure">
-                      <MeasureName>Satisfaccion Materiales</MeasureName>
-                      <UniqueName>[Measures].[Satisfaccion Materiales]</UniqueName>
-                    </ID>
-                    <ItemCaption>Satisfaccion Materiales</ItemCaption>
-                    <BackColor>true</BackColor>
-                    <ForeColor>true</ForeColor>
-                    <FontFamily>true</FontFamily>
-                    <FontSize>true</FontSize>
-                    <FontWeight>true</FontWeight>
-                    <FontStyle>true</FontStyle>
-                    <FontDecoration>true</FontDecoration>
-                    <FormattedValue>true</FormattedValue>
-                    <FormatString>true</FormatString>
-                  </Item>
-                </Items>
-              </Select>
-              <AutoExecute>false</AutoExecute>
-              <From>CuboSatisfaccionPedagogica</From>
-              <Filter>
-                <FilterItems>
-                  <FilterItem>
-                    <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[TIEMPO].[Anio].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                  <FilterItem>
-                    <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[TIEMPO].[Semestre].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                  <FilterItem>
-                    <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[CICLO].[ValorCiclo].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                  <FilterItem>
-                    <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[CARRERA].[NombreCarrera].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                  <FilterItem>
-                    <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
-                    <Condition xsi:type="EqualTo">
-                      <Members>
-                        <Member>
-                          <MemberUniqueName>[CURSO].[NombreCurso].[TODOS]</MemberUniqueName>
-                        </Member>
-                      </Members>
-                      <Parametrized>true</Parametrized>
-                    </Condition>
-                  </FilterItem>
-                </FilterItems>
-              </Filter>
-              <Calculations />
-              <Aggregates />
-              <QueryProperties>
-                <IncludeMemberValue>true</IncludeMemberValue>
-              </QueryProperties>
-            </QuerySpecification>
-            <Query>
-              <Statement> SELECT NON EMPTY { [Measures].[Satisfaccion Materiales] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [TIEMPO].[FechaCompleta].[FechaCompleta].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
-              <ParameterDefinitions>
-                <ParameterDefinition>
-                  <Name>TIEMPOAnio</Name>
-                  <DefaultValues>
-                    <DefaultValue>[TIEMPO].[Anio].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>Anio</Caption>
-                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboSatisfaccionPedagogica]</Statement>
-                    <ParameterizedStatement>
-                      <ReferencedParameters />
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-                <ParameterDefinition>
-                  <Name>TIEMPOSemestre</Name>
-                  <DefaultValues>
-                    <DefaultValue>[TIEMPO].[Semestre].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>Semestre</Caption>
-                  <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
-                    <ParameterizedStatement>
-                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
-                      <ReferencedParameters>
-                        <ReferencedParameter>
-                          <Name>TIEMPOAnio</Name>
-                        </ReferencedParameter>
-                      </ReferencedParameters>
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-                <ParameterDefinition>
-                  <Name>CICLOValorCiclo</Name>
-                  <DefaultValues>
-                    <DefaultValue>[CICLO].[ValorCiclo].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>ValorCiclo</Caption>
-                  <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</Statement>
-                    <ParameterizedStatement>
-                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</Statement>
-                      <ReferencedParameters>
-                        <ReferencedParameter>
-                          <Name>TIEMPOAnio</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>TIEMPOSemestre</Name>
-                        </ReferencedParameter>
-                      </ReferencedParameters>
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-                <ParameterDefinition>
-                  <Name>CARRERANombreCarrera</Name>
-                  <DefaultValues>
-                    <DefaultValue>[CARRERA].[NombreCarrera].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>NombreCarrera</Caption>
-                  <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))</Statement>
-                    <ParameterizedStatement>
-                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))</Statement>
-                      <ReferencedParameters>
-                        <ReferencedParameter>
-                          <Name>TIEMPOAnio</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>TIEMPOSemestre</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>CICLOValorCiclo</Name>
-                        </ReferencedParameter>
-                      </ReferencedParameters>
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-                <ParameterDefinition>
-                  <Name>CURSONombreCurso</Name>
-                  <DefaultValues>
-                    <DefaultValue>[CURSO].[NombreCurso].[TODOS]</DefaultValue>
-                  </DefaultValues>
-                  <Caption>NombreCurso</Caption>
-                  <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
-                  <ParameterValuesQuery>
-                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CURSO].[NombreCurso].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CURSO].[NombreCurso].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CURSO].[NombreCurso].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CURSO].[NombreCurso].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))</Statement>
-                    <ParameterizedStatement>
-                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CURSO].[NombreCurso].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CURSO].[NombreCurso].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CURSO].[NombreCurso].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CURSO].[NombreCurso].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))))</Statement>
-                      <ReferencedParameters>
-                        <ReferencedParameter>
-                          <Name>TIEMPOAnio</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>TIEMPOSemestre</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>CICLOValorCiclo</Name>
-                        </ReferencedParameter>
-                        <ReferencedParameter>
-                          <Name>CARRERANombreCarrera</Name>
-                        </ReferencedParameter>
-                      </ReferencedParameters>
-                    </ParameterizedStatement>
-                  </ParameterValuesQuery>
-                  <MultipleValues>true</MultipleValues>
-                </ParameterDefinition>
-              </ParameterDefinitions>
-            </Query>
-          </QueryDefinition>
-        </rd:DesignerState>
-      </Query>
-      <Fields>
-        <Field Name="Anio">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Anio].[Anio]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Semestre">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Semestre].[Semestre]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ValorCiclo">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CICLO].[ValorCiclo].[ValorCiclo]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NombreCarrera">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CARRERA].[NombreCarrera].[NombreCarrera]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NombreCurso">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CURSO].[NombreCurso].[NombreCurso]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FechaCompleta">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[FechaCompleta].[FechaCompleta]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Satisfaccion_Materiales">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Satisfaccion Materiales]" /&gt;</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="SatisfaccionSession">
-      <Query>
-        <DataSourceName>ARSHUCH</DataSourceName>
-        <CommandText> SELECT NON EMPTY { [Measures].[Satisfaccion Session Video] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [TIEMPO].[FechaCompleta].[FechaCompleta].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM [CuboSatisfaccionPedagogica] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
-        <rd:DesignerState>
-          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
-            <CommandType>MDX</CommandType>
-            <QuerySpecification xsi:type="MDXQuerySpecification">
-              <Select>
-                <Items>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>TIEMPO</DimensionName>
-                      <HierarchyName>Anio</HierarchyName>
-                      <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
-                      <LevelName>Anio</LevelName>
-                      <UniqueName>[TIEMPO].[Anio].[Anio]</UniqueName>
-                    </ID>
-                    <ItemCaption>Anio</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>TIEMPO</DimensionName>
-                      <HierarchyName>Semestre</HierarchyName>
-                      <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
-                      <LevelName>Semestre</LevelName>
-                      <UniqueName>[TIEMPO].[Semestre].[Semestre]</UniqueName>
-                    </ID>
-                    <ItemCaption>Semestre</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>CICLO</DimensionName>
-                      <HierarchyName>ValorCiclo</HierarchyName>
-                      <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
-                      <LevelName>ValorCiclo</LevelName>
-                      <UniqueName>[CICLO].[ValorCiclo].[ValorCiclo]</UniqueName>
-                    </ID>
-                    <ItemCaption>ValorCiclo</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>CARRERA</DimensionName>
-                      <HierarchyName>NombreCarrera</HierarchyName>
-                      <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
-                      <LevelName>NombreCarrera</LevelName>
-                      <UniqueName>[CARRERA].[NombreCarrera].[NombreCarrera]</UniqueName>
-                    </ID>
-                    <ItemCaption>NombreCarrera</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>CURSO</DimensionName>
-                      <HierarchyName>NombreCurso</HierarchyName>
-                      <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
-                      <LevelName>NombreCurso</LevelName>
-                      <UniqueName>[CURSO].[NombreCurso].[NombreCurso]</UniqueName>
-                    </ID>
-                    <ItemCaption>NombreCurso</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Level">
-                      <DimensionName>TIEMPO</DimensionName>
-                      <HierarchyName>FechaCompleta</HierarchyName>
-                      <HierarchyUniqueName>[TIEMPO].[FechaCompleta]</HierarchyUniqueName>
-                      <LevelName>FechaCompleta</LevelName>
-                      <UniqueName>[TIEMPO].[FechaCompleta].[FechaCompleta]</UniqueName>
-                    </ID>
-                    <ItemCaption>FechaCompleta</ItemCaption>
-                    <UniqueName>true</UniqueName>
-                  </Item>
-                  <Item>
-                    <ID xsi:type="Measure">
-                      <MeasureName>Satisfaccion Session Video</MeasureName>
-                      <UniqueName>[Measures].[Satisfaccion Session Video]</UniqueName>
-                    </ID>
-                    <ItemCaption>Satisfaccion Session Video</ItemCaption>
-                    <BackColor>true</BackColor>
-                    <ForeColor>true</ForeColor>
-                    <FontFamily>true</FontFamily>
-                    <FontSize>true</FontSize>
-                    <FontWeight>true</FontWeight>
-                    <FontStyle>true</FontStyle>
-                    <FontDecoration>true</FontDecoration>
-                    <FormattedValue>true</FormattedValue>
-                    <FormatString>true</FormatString>
-                  </Item>
-                </Items>
-              </Select>
-              <AutoExecute>false</AutoExecute>
-              <From>CuboSatisfaccionPedagogica</From>
-              <Filter>
-                <FilterItems />
-              </Filter>
-              <Calculations />
-              <Aggregates />
-              <QueryProperties>
-                <IncludeMemberValue>true</IncludeMemberValue>
-              </QueryProperties>
-            </QuerySpecification>
-            <Query>
-              <Statement> SELECT NON EMPTY { [Measures].[Satisfaccion Session Video] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [TIEMPO].[FechaCompleta].[FechaCompleta].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM [CuboSatisfaccionPedagogica] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
-              <ParameterDefinitions />
-            </Query>
-          </QueryDefinition>
-        </rd:DesignerState>
-      </Query>
-      <Fields>
-        <Field Name="Anio">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Anio].[Anio]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Semestre">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Semestre].[Semestre]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ValorCiclo">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CICLO].[ValorCiclo].[ValorCiclo]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NombreCarrera">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CARRERA].[NombreCarrera].[NombreCarrera]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="NombreCurso">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CURSO].[NombreCurso].[NombreCurso]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FechaCompleta">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[FechaCompleta].[FechaCompleta]" /&gt;</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Satisfaccion_Session_Video">
-          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Satisfaccion Session Video]" /&gt;</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
         <ReportItems>
-          <Chart Name="Chart3">
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Exportar Información</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>6.13453cm</Top>
+            <Left>5.3467cm</Left>
+            <Height>0.73378cm</Height>
+            <Width>4.70133cm</Width>
+            <Style>
+              <Border>
+                <Color>Gray</Color>
+                <Style>Solid</Style>
+                <Width>2pt</Width>
+              </Border>
+              <BackgroundColor>Gray</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Chart Name="Chart2">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="Chart3_CategoryGroup1">
+                  <Group Name="Chart2_CategoryGroup">
                     <GroupExpressions>
                       <GroupExpression>=Fields!FechaCompleta.Value</GroupExpression>
                     </GroupExpressions>
@@ -1818,16 +1067,7 @@
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>Satisfaccion Didactica</Label>
-                </ChartMember>
-                <ChartMember>
-                  <Label>Satisfaccion Evaluacion</Label>
-                </ChartMember>
-                <ChartMember>
                   <Label>Satisfaccion Materiales</Label>
-                </ChartMember>
-                <ChartMember>
-                  <Label>Satisfaccion Session Video</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
@@ -1837,111 +1077,11 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Avg(Fields!Satisfaccion_Didactica.Value)</Y>
-                      </ChartDataPointValues>
-                      <ChartDataLabel>
-                        <Style />
-                      </ChartDataLabel>
-                      <Style />
-                      <ChartMarker>
-                        <Style />
-                      </ChartMarker>
-                      <DataElementOutput>Output</DataElementOutput>
-                    </ChartDataPoint>
-                  </ChartDataPoints>
-                  <Type>Line</Type>
-                  <Style />
-                  <ChartEmptyPoints>
-                    <Style />
-                    <ChartMarker>
-                      <Style />
-                    </ChartMarker>
-                    <ChartDataLabel>
-                      <Style />
-                    </ChartDataLabel>
-                  </ChartEmptyPoints>
-                  <ValueAxisName>Primary</ValueAxisName>
-                  <CategoryAxisName>Primary</CategoryAxisName>
-                  <ChartSmartLabel>
-                    <CalloutLineColor>Black</CalloutLineColor>
-                    <MinMovingDistance>0pt</MinMovingDistance>
-                  </ChartSmartLabel>
-                </ChartSeries>
-                <ChartSeries Name="Satisfaccion_Evaluacion">
-                  <ChartDataPoints>
-                    <ChartDataPoint>
-                      <ChartDataPointValues>
-                        <Y>=Avg(Fields!Satisfaccion_Evaluacion.Value)</Y>
-                      </ChartDataPointValues>
-                      <ChartDataLabel>
-                        <Style />
-                      </ChartDataLabel>
-                      <Style />
-                      <ChartMarker>
-                        <Style />
-                      </ChartMarker>
-                      <DataElementOutput>Output</DataElementOutput>
-                    </ChartDataPoint>
-                  </ChartDataPoints>
-                  <Type>Line</Type>
-                  <Style />
-                  <ChartEmptyPoints>
-                    <Style />
-                    <ChartMarker>
-                      <Style />
-                    </ChartMarker>
-                    <ChartDataLabel>
-                      <Style />
-                    </ChartDataLabel>
-                  </ChartEmptyPoints>
-                  <ValueAxisName>Primary</ValueAxisName>
-                  <CategoryAxisName>Primary</CategoryAxisName>
-                  <ChartSmartLabel>
-                    <CalloutLineColor>Black</CalloutLineColor>
-                    <MinMovingDistance>0pt</MinMovingDistance>
-                  </ChartSmartLabel>
-                </ChartSeries>
-                <ChartSeries Name="Satisfaccion_Materiales">
-                  <ChartDataPoints>
-                    <ChartDataPoint>
-                      <ChartDataPointValues>
-                        <Y>=Avg(Fields!Satisfaccion_Materiales.Value)</Y>
-                      </ChartDataPointValues>
-                      <ChartDataLabel>
-                        <Style />
-                      </ChartDataLabel>
-                      <Style>
-                        <BackgroundGradientType>None</BackgroundGradientType>
-                      </Style>
-                      <ChartMarker>
-                        <Style />
-                      </ChartMarker>
-                      <DataElementOutput>Output</DataElementOutput>
-                    </ChartDataPoint>
-                  </ChartDataPoints>
-                  <Type>Line</Type>
-                  <Style />
-                  <ChartEmptyPoints>
-                    <Style />
-                    <ChartMarker>
-                      <Style />
-                    </ChartMarker>
-                    <ChartDataLabel>
-                      <Style />
-                    </ChartDataLabel>
-                  </ChartEmptyPoints>
-                  <ValueAxisName>Primary</ValueAxisName>
-                  <CategoryAxisName>Primary</CategoryAxisName>
-                  <ChartSmartLabel>
-                    <CalloutLineColor>Black</CalloutLineColor>
-                    <MinMovingDistance>0pt</MinMovingDistance>
-                  </ChartSmartLabel>
-                </ChartSeries>
-                <ChartSeries Name="Satisfaccion_Session_Video">
-                  <ChartDataPoints>
-                    <ChartDataPoint>
-                      <ChartDataPointValues>
-                        <Y>=Avg(Fields!Satisfaccion_Session_Video.Value)</Y>
+                        <Y>=IIF(Parameters!Satisfaccion.Value =1,Sum(Fields!Satisfaccion_Materiales.Value),
+	 IIF(Parameters!Satisfaccion.Value =2,Sum(Fields!Satisfaccion_Evaluacion.Value),
+		IIF(Parameters!Satisfaccion.Value =3,Sum(Fields!Satisfaccion_Session_Video.Value),
+			Sum(cint(Fields!Satisfaccion_Didactica.Value)
+			))))</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -2140,7 +1280,6 @@
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
                     <ChartAxisScaleBreak>
-                      <Enabled>true</Enabled>
                       <Style />
                     </ChartAxisScaleBreak>
                   </ChartAxis>
@@ -2206,30 +1345,13 @@
                 </Style>
               </ChartArea>
             </ChartAreas>
-            <ChartLegends>
-              <ChartLegend Name="Default">
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontSize>8pt</FontSize>
-                </Style>
-                <Position>TopCenter</Position>
-                <Layout>WideTable</Layout>
-                <DockOutsideChartArea>true</DockOutsideChartArea>
-                <ChartLegendTitle>
-                  <Caption />
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </ChartLegendTitle>
-                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
-                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
-              </ChartLegend>
-            </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Título del gráfico</Caption>
+                <Caption>=IIF(Parameters!Satisfaccion.Value =1,"Materiales de Clase",
+	 IIF(Parameters!Satisfaccion.Value =2,"Forma de Evaluación",
+		IIF(Parameters!Satisfaccion.Value =3,"Session de Video",
+			IIF(Parameters!Satisfaccion.Value =4,"Didáctica del docente",
+				0))))</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -2238,7 +1360,6 @@
                   <VerticalAlign>Top</VerticalAlign>
                   <Color>#a6a6a6</Color>
                 </Style>
-                <Position>TopLeft</Position>
               </ChartTitle>
             </ChartTitles>
             <Palette>Pacific</Palette>
@@ -2259,8 +1380,10 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SatisfaccionCurso</DataSetName>
-            <Height>5.99342cm</Height>
-            <Width>14.58237cm</Width>
+            <Top>0.03528cm</Top>
+            <Height>5.79586cm</Height>
+            <Width>14.73055cm</Width>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -2270,14 +1393,14 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Textbox Name="Textbox1">
+          <Textbox Name="Textbox3">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Exportar Información</Value>
+                    <Value>VOLVER</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -2289,16 +1412,23 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>6.13453cm</Top>
-            <Left>5.3467cm</Left>
-            <Height>0.73378cm</Height>
-            <Width>4.70133cm</Width>
-            <ZIndex>1</ZIndex>
+            <ActionInfo>
+              <Actions>
+                <Action>
+                  <Drillthrough>
+                    <ReportName>M2-1-1</ReportName>
+                  </Drillthrough>
+                </Action>
+              </Actions>
+            </ActionInfo>
+            <Top>6.00753cm</Top>
+            <Left>0.4532cm</Left>
+            <Height>0.68467cm</Height>
+            <Width>1.88616cm</Width>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
-                <Color>Gray</Color>
                 <Style>Solid</Style>
-                <Width>2pt</Width>
               </Border>
               <BackgroundColor>Gray</BackgroundColor>
               <VerticalAlign>Middle</VerticalAlign>
@@ -2359,7 +1489,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.18533cm</Height>
+          <Height>0.02646cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <Style>
@@ -2465,6 +1595,35 @@
       </ValidValues>
       <MultiValue>true</MultiValue>
     </ReportParameter>
+    <ReportParameter Name="Satisfaccion">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Satisfaccion</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>3</Value>
+            <Label>Sessiones de Video</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>1</Value>
+            <Label>Materiales de Clase</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>2</Value>
+            <Label>Forma de Evaluación</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>4</Value>
+            <Label>Didactica del Docente</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2495,6 +1654,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>CURSONombreCurso</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>Satisfaccion</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

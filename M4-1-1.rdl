@@ -1799,8 +1799,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>SatisfaccionTalleresReforzamiento</DataSetName>
-            <Top>0.7112cm</Top>
-            <Left>1.89653cm</Left>
+            <Top>0.35137cm</Top>
+            <Left>0.30903cm</Left>
             <Height>8.97934cm</Height>
             <Width>13.95583cm</Width>
             <Style>
@@ -1916,8 +1916,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>satPromedioEstudiante</DataSetName>
-            <Top>0.7112cm</Top>
-            <Left>16.54387cm</Left>
+            <Top>0.35137cm</Top>
+            <Left>14.78704cm</Left>
             <Height>1.09416cm</Height>
             <Width>5.45627cm</Width>
             <ZIndex>1</ZIndex>
@@ -2045,8 +2045,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>SatisfaccionTalleresReforzamiento</DataSetName>
-            <Top>4.68941cm</Top>
-            <Left>16.54387cm</Left>
+            <Top>4.32958cm</Top>
+            <Left>14.78704cm</Left>
             <Height>1.28466cm</Height>
             <Width>5.45627cm</Width>
             <ZIndex>2</ZIndex>
@@ -2174,8 +2174,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>SatisfaccionTalleresReforzamiento</DataSetName>
-            <Top>5.97408cm</Top>
-            <Left>16.54387cm</Left>
+            <Top>5.61425cm</Top>
+            <Left>14.78704cm</Left>
             <Height>1.26128cm</Height>
             <Width>5.45627cm</Width>
             <ZIndex>3</ZIndex>
@@ -2381,10 +2381,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>SatisfaccionTalleresReforzamiento</DataSetName>
-            <Top>1.84064cm</Top>
-            <Left>16.54387cm</Left>
-            <Height>1.36795cm</Height>
-            <Width>10.94783cm</Width>
+            <Top>1.48081cm</Top>
+            <Left>14.78704cm</Left>
+            <Height>1.36794cm</Height>
+            <Width>10.94784cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -2588,10 +2588,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>SatisfaccionTalleresReforzamiento</DataSetName>
-            <Top>3.24386cm</Top>
-            <Left>16.54387cm</Left>
-            <Height>1.41027cm</Height>
-            <Width>10.94783cm</Width>
+            <Top>2.88403cm</Top>
+            <Left>14.78704cm</Left>
+            <Height>1.41028cm</Height>
+            <Width>10.94784cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -2599,6 +2599,53 @@
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox8">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Visualizar Comentarios</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <ActionInfo>
+              <Actions>
+                <Action>
+                  <Drillthrough>
+                    <ReportName>M4-2-1</ReportName>
+                  </Drillthrough>
+                </Action>
+              </Actions>
+            </ActionInfo>
+            <Top>7.21771cm</Top>
+            <Left>14.78704cm</Left>
+            <Height>0.81845cm</Height>
+            <Width>5.45627cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Color>Gray</Color>
+                <Style>Solid</Style>
+                <Width>2pt</Width>
+              </Border>
+              <BackgroundColor>Gray</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>4.10546in</Height>
         <Style />

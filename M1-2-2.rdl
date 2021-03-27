@@ -1,0 +1,3427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="InfluenciaFactores">
+      <DataSourceReference>ARSUCH_DWH</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>dd3b81fe-eb5a-4b9f-81a8-f0e3f761532f</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Factores">
+      <Query>
+        <DataSourceName>InfluenciaFactores</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="TIEMPOAnio">
+            <Value>=Parameters!TIEMPOAnio.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="TIEMPOSemestre">
+            <Value>=Parameters!TIEMPOSemestre.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="CICLOValorCiclo">
+            <Value>=Parameters!CICLOValorCiclo.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="CARRERANombreCarrera">
+            <Value>=Parameters!CARRERANombreCarrera.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="CURSONombreCurso">
+            <Value>=Parameters!CURSONombreCurso.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText> SELECT NON EMPTY { [Measures].[Factor Acceso Internet], [Measures].[Factor Apoyo Familiar], [Measures].[Factor Economico], [Measures].[Factor Pareja], [Measures].[Factor Salud], [Measures].[Factor Tamanio Familiar], [Measures].[Factor Tiempo Estudio], [Measures].[Factor Tiempo Traslado], [Measures].[Factor Tiempo Libre] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>TIEMPO</DimensionName>
+                      <HierarchyName>Anio</HierarchyName>
+                      <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                      <LevelName>Anio</LevelName>
+                      <UniqueName>[TIEMPO].[Anio].[Anio]</UniqueName>
+                    </ID>
+                    <ItemCaption>Anio</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>TIEMPO</DimensionName>
+                      <HierarchyName>Semestre</HierarchyName>
+                      <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                      <LevelName>Semestre</LevelName>
+                      <UniqueName>[TIEMPO].[Semestre].[Semestre]</UniqueName>
+                    </ID>
+                    <ItemCaption>Semestre</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>CICLO</DimensionName>
+                      <HierarchyName>ValorCiclo</HierarchyName>
+                      <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
+                      <LevelName>ValorCiclo</LevelName>
+                      <UniqueName>[CICLO].[ValorCiclo].[ValorCiclo]</UniqueName>
+                    </ID>
+                    <ItemCaption>ValorCiclo</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>CARRERA</DimensionName>
+                      <HierarchyName>NombreCarrera</HierarchyName>
+                      <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
+                      <LevelName>NombreCarrera</LevelName>
+                      <UniqueName>[CARRERA].[NombreCarrera].[NombreCarrera]</UniqueName>
+                    </ID>
+                    <ItemCaption>NombreCarrera</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>CURSO</DimensionName>
+                      <HierarchyName>NombreCurso</HierarchyName>
+                      <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
+                      <LevelName>NombreCurso</LevelName>
+                      <UniqueName>[CURSO].[NombreCurso].[NombreCurso]</UniqueName>
+                    </ID>
+                    <ItemCaption>NombreCurso</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Factor Acceso Internet</MeasureName>
+                      <UniqueName>[Measures].[Factor Acceso Internet]</UniqueName>
+                    </ID>
+                    <ItemCaption>Factor Acceso Internet</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Factor Apoyo Familiar</MeasureName>
+                      <UniqueName>[Measures].[Factor Apoyo Familiar]</UniqueName>
+                    </ID>
+                    <ItemCaption>Factor Apoyo Familiar</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Factor Economico</MeasureName>
+                      <UniqueName>[Measures].[Factor Economico]</UniqueName>
+                    </ID>
+                    <ItemCaption>Factor Economico</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Factor Pareja</MeasureName>
+                      <UniqueName>[Measures].[Factor Pareja]</UniqueName>
+                    </ID>
+                    <ItemCaption>Factor Pareja</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Factor Salud</MeasureName>
+                      <UniqueName>[Measures].[Factor Salud]</UniqueName>
+                    </ID>
+                    <ItemCaption>Factor Salud</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Factor Tamanio Familiar</MeasureName>
+                      <UniqueName>[Measures].[Factor Tamanio Familiar]</UniqueName>
+                    </ID>
+                    <ItemCaption>Factor Tamanio Familiar</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Factor Tiempo Estudio</MeasureName>
+                      <UniqueName>[Measures].[Factor Tiempo Estudio]</UniqueName>
+                    </ID>
+                    <ItemCaption>Factor Tiempo Estudio</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Factor Tiempo Traslado</MeasureName>
+                      <UniqueName>[Measures].[Factor Tiempo Traslado]</UniqueName>
+                    </ID>
+                    <ItemCaption>Factor Tiempo Traslado</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Factor Tiempo Libre</MeasureName>
+                      <UniqueName>[Measures].[Factor Tiempo Libre]</UniqueName>
+                    </ID>
+                    <ItemCaption>Factor Tiempo Libre</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboRendAcademico</From>
+              <Filter>
+                <FilterItems>
+                  <FilterItem>
+                    <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[TIEMPO].[Anio].&amp;[2019]</MemberUniqueName>
+                        </Member>
+                      </Members>
+                      <Parametrized>true</Parametrized>
+                    </Condition>
+                  </FilterItem>
+                  <FilterItem>
+                    <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[TIEMPO].[Semestre].&amp;[1]</MemberUniqueName>
+                        </Member>
+                      </Members>
+                      <Parametrized>true</Parametrized>
+                    </Condition>
+                  </FilterItem>
+                  <FilterItem>
+                    <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[CICLO].[ValorCiclo].&amp;[10]</MemberUniqueName>
+                        </Member>
+                      </Members>
+                      <Parametrized>true</Parametrized>
+                    </Condition>
+                  </FilterItem>
+                  <FilterItem>
+                    <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[CARRERA].[NombreCarrera].&amp;[2]</MemberUniqueName>
+                        </Member>
+                      </Members>
+                      <Parametrized>true</Parametrized>
+                    </Condition>
+                  </FilterItem>
+                  <FilterItem>
+                    <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[CURSO].[NombreCurso].&amp;[5]</MemberUniqueName>
+                        </Member>
+                      </Members>
+                      <Parametrized>true</Parametrized>
+                    </Condition>
+                  </FilterItem>
+                </FilterItems>
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties>
+                <IncludeMemberValue>true</IncludeMemberValue>
+              </QueryProperties>
+            </QuerySpecification>
+            <Query>
+              <Statement> SELECT NON EMPTY { [Measures].[Factor Acceso Internet], [Measures].[Factor Apoyo Familiar], [Measures].[Factor Economico], [Measures].[Factor Pareja], [Measures].[Factor Salud], [Measures].[Factor Tamanio Familiar], [Measures].[Factor Tiempo Estudio], [Measures].[Factor Tiempo Traslado], [Measures].[Factor Tiempo Libre] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CURSONombreCurso, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
+              <ParameterDefinitions>
+                <ParameterDefinition>
+                  <Name>TIEMPOAnio</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Anio].&amp;[2019]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Anio</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboRendAcademico]</Statement>
+                    <ParameterizedStatement>
+                      <ReferencedParameters />
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>TIEMPOSemestre</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Semestre].&amp;[1]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Semestre</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>CICLOValorCiclo</Name>
+                  <DefaultValues>
+                    <DefaultValue>[CICLO].[ValorCiclo].&amp;[10]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>ValorCiclo</Caption>
+                  <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>TIEMPOSemestre</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>CARRERANombreCarrera</Name>
+                  <DefaultValues>
+                    <DefaultValue>[CARRERA].[NombreCarrera].&amp;[2]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>NombreCarrera</Caption>
+                  <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])))</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])))</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>TIEMPOSemestre</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>CICLOValorCiclo</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>CURSONombreCurso</Name>
+                  <DefaultValues>
+                    <DefaultValue>[CURSO].[NombreCurso].&amp;[5]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>NombreCurso</Caption>
+                  <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CURSO].[NombreCurso].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CURSO].[NombreCurso].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CURSO].[NombreCurso].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CURSO].[NombreCurso].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))))</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CURSO].[NombreCurso].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CURSO].[NombreCurso].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CURSO].[NombreCurso].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CURSO].[NombreCurso].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))))</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>TIEMPOSemestre</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>CICLOValorCiclo</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>CARRERANombreCarrera</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+              </ParameterDefinitions>
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="Anio">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Anio].[Anio]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Semestre">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Semestre].[Semestre]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ValorCiclo">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CICLO].[ValorCiclo].[ValorCiclo]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreCarrera">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CARRERA].[NombreCarrera].[NombreCarrera]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreCurso">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CURSO].[NombreCurso].[NombreCurso]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Factor_Acceso_Internet">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Factor Acceso Internet]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Factor_Apoyo_Familiar">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Factor Apoyo Familiar]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Factor_Economico">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Factor Economico]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Factor_Pareja">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Factor Pareja]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Factor_Salud">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Factor Salud]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Factor_Tamanio_Familiar">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Factor Tamanio Familiar]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Factor_Tiempo_Estudio">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Factor Tiempo Estudio]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Factor_Tiempo_Traslado">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Factor Tiempo Traslado]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Factor_Tiempo_Libre">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Factor Tiempo Libre]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="TIEMPOAnio">
+      <Query>
+        <DataSourceName>InfluenciaFactores</DataSourceName>
+        <CommandText>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboRendAcademico]</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <Type>Query</Type>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterCaption</MeasureName>
+                      <UniqueName>[Measures].[ParameterCaption]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterCaption</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterValue</MeasureName>
+                      <UniqueName>[Measures].[ParameterValue]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterValue</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterLevel</MeasureName>
+                      <UniqueName>[Measures].[ParameterLevel]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterLevel</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboRendAcademico</From>
+              <Filter>
+                <FilterItems />
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboRendAcademico]</Statement>
+              <ParameterDefinitions />
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+        <rd:AutoGenerated>true</rd:AutoGenerated>
+        <rd:Hidden>true</rd:Hidden>
+      </Query>
+      <Fields>
+        <Field Name="ParameterCaption">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterCaption]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterValue">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterValue]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterLevel">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterLevel]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterCaptionIndented">
+          <Value>=Space(3*Fields!ParameterLevel.Value) + Fields!ParameterCaption.Value</Value>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="TIEMPOSemestre">
+      <Query>
+        <DataSourceName>InfluenciaFactores</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="TIEMPOAnio">
+            <Value>=Parameters!TIEMPOAnio.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <Type>Query</Type>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterCaption</MeasureName>
+                      <UniqueName>[Measures].[ParameterCaption]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterCaption</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterValue</MeasureName>
+                      <UniqueName>[Measures].[ParameterValue]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterValue</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterLevel</MeasureName>
+                      <UniqueName>[Measures].[ParameterLevel]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterLevel</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboRendAcademico</From>
+              <Filter>
+                <FilterItems />
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</Statement>
+              <ParameterDefinitions>
+                <ParameterDefinition>
+                  <Name>TIEMPOAnio</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Anio].&amp;[2019]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Anio</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboRendAcademico]</Statement>
+                    <ParameterizedStatement>
+                      <ReferencedParameters />
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+              </ParameterDefinitions>
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+        <rd:AutoGenerated>true</rd:AutoGenerated>
+        <rd:Hidden>true</rd:Hidden>
+      </Query>
+      <Fields>
+        <Field Name="ParameterCaption">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterCaption]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterValue">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterValue]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterLevel">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterLevel]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterCaptionIndented">
+          <Value>=Space(3*Fields!ParameterLevel.Value) + Fields!ParameterCaption.Value</Value>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CICLOValorCiclo">
+      <Query>
+        <DataSourceName>InfluenciaFactores</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="TIEMPOAnio">
+            <Value>=Parameters!TIEMPOAnio.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="TIEMPOSemestre">
+            <Value>=Parameters!TIEMPOSemestre.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <Type>Query</Type>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterCaption</MeasureName>
+                      <UniqueName>[Measures].[ParameterCaption]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterCaption</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterValue</MeasureName>
+                      <UniqueName>[Measures].[ParameterValue]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterValue</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterLevel</MeasureName>
+                      <UniqueName>[Measures].[ParameterLevel]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterLevel</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboRendAcademico</From>
+              <Filter>
+                <FilterItems />
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))</Statement>
+              <ParameterDefinitions>
+                <ParameterDefinition>
+                  <Name>TIEMPOAnio</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Anio].&amp;[2019]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Anio</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboRendAcademico]</Statement>
+                    <ParameterizedStatement>
+                      <ReferencedParameters />
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>TIEMPOSemestre</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Semestre].&amp;[1]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Semestre</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+              </ParameterDefinitions>
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+        <rd:AutoGenerated>true</rd:AutoGenerated>
+        <rd:Hidden>true</rd:Hidden>
+      </Query>
+      <Fields>
+        <Field Name="ParameterCaption">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterCaption]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterValue">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterValue]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterLevel">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterLevel]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterCaptionIndented">
+          <Value>=Space(3*Fields!ParameterLevel.Value) + Fields!ParameterCaption.Value</Value>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CARRERANombreCarrera">
+      <Query>
+        <DataSourceName>InfluenciaFactores</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="TIEMPOAnio">
+            <Value>=Parameters!TIEMPOAnio.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="TIEMPOSemestre">
+            <Value>=Parameters!TIEMPOSemestre.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="CICLOValorCiclo">
+            <Value>=Parameters!CICLOValorCiclo.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])))</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <Type>Query</Type>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterCaption</MeasureName>
+                      <UniqueName>[Measures].[ParameterCaption]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterCaption</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterValue</MeasureName>
+                      <UniqueName>[Measures].[ParameterValue]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterValue</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterLevel</MeasureName>
+                      <UniqueName>[Measures].[ParameterLevel]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterLevel</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboRendAcademico</From>
+              <Filter>
+                <FilterItems />
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])))</Statement>
+              <ParameterDefinitions>
+                <ParameterDefinition>
+                  <Name>TIEMPOAnio</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Anio].&amp;[2019]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Anio</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboRendAcademico]</Statement>
+                    <ParameterizedStatement>
+                      <ReferencedParameters />
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>TIEMPOSemestre</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Semestre].&amp;[1]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Semestre</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>CICLOValorCiclo</Name>
+                  <DefaultValues>
+                    <DefaultValue>[CICLO].[ValorCiclo].&amp;[10]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>ValorCiclo</Caption>
+                  <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>TIEMPOSemestre</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+              </ParameterDefinitions>
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+        <rd:AutoGenerated>true</rd:AutoGenerated>
+        <rd:Hidden>true</rd:Hidden>
+      </Query>
+      <Fields>
+        <Field Name="ParameterCaption">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterCaption]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterValue">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterValue]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterLevel">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterLevel]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterCaptionIndented">
+          <Value>=Space(3*Fields!ParameterLevel.Value) + Fields!ParameterCaption.Value</Value>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CURSONombreCurso">
+      <Query>
+        <DataSourceName>InfluenciaFactores</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="TIEMPOAnio">
+            <Value>=Parameters!TIEMPOAnio.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="TIEMPOSemestre">
+            <Value>=Parameters!TIEMPOSemestre.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="CICLOValorCiclo">
+            <Value>=Parameters!CICLOValorCiclo.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="CARRERANombreCarrera">
+            <Value>=Parameters!CARRERANombreCarrera.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH MEMBER [Measures].[ParameterCaption] AS [CURSO].[NombreCurso].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CURSO].[NombreCurso].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CURSO].[NombreCurso].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CURSO].[NombreCurso].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))))</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <Type>Query</Type>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterCaption</MeasureName>
+                      <UniqueName>[Measures].[ParameterCaption]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterCaption</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterValue</MeasureName>
+                      <UniqueName>[Measures].[ParameterValue]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterValue</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterLevel</MeasureName>
+                      <UniqueName>[Measures].[ParameterLevel]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterLevel</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboRendAcademico</From>
+              <Filter>
+                <FilterItems />
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CURSO].[NombreCurso].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CURSO].[NombreCurso].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CURSO].[NombreCurso].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CURSO].[NombreCurso].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))))</Statement>
+              <ParameterDefinitions>
+                <ParameterDefinition>
+                  <Name>TIEMPOAnio</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Anio].&amp;[2019]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Anio</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboRendAcademico]</Statement>
+                    <ParameterizedStatement>
+                      <ReferencedParameters />
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>TIEMPOSemestre</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Semestre].&amp;[1]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Semestre</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>CICLOValorCiclo</Name>
+                  <DefaultValues>
+                    <DefaultValue>[CICLO].[ValorCiclo].&amp;[10]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>ValorCiclo</Caption>
+                  <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico]))</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>TIEMPOSemestre</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>CARRERANombreCarrera</Name>
+                  <DefaultValues>
+                    <DefaultValue>[CARRERA].[NombreCarrera].&amp;[2]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>NombreCarrera</Caption>
+                  <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])))</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboRendAcademico])))</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>TIEMPOSemestre</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>CICLOValorCiclo</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+              </ParameterDefinitions>
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+        <rd:AutoGenerated>true</rd:AutoGenerated>
+        <rd:Hidden>true</rd:Hidden>
+      </Query>
+      <Fields>
+        <Field Name="ParameterCaption">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterCaption]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterValue">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterValue]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterLevel">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterLevel]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterCaptionIndented">
+          <Value>=Space(3*Fields!ParameterLevel.Value) + Fields!ParameterCaption.Value</Value>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Chart Name="Chart1">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label />
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>Factor Economico</Label>
+                </ChartMember>
+                <ChartMember>
+                  <Label>Factor Apoyo Familiar</Label>
+                </ChartMember>
+                <ChartMember>
+                  <Label>Factor Pareja</Label>
+                </ChartMember>
+                <ChartMember>
+                  <Label>Factor Acceso Internet</Label>
+                </ChartMember>
+                <ChartMember>
+                  <Label>Factor Salud</Label>
+                </ChartMember>
+                <ChartMember>
+                  <Label>Factor Tamanio Familiar</Label>
+                </ChartMember>
+                <ChartMember>
+                  <Label>Factor Tiempo Estudio</Label>
+                </ChartMember>
+                <ChartMember>
+                  <Label>Factor Tiempo Libre</Label>
+                </ChartMember>
+                <ChartMember>
+                  <Label>Factor Tiempo Traslado</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="Factor_Economico">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Factor_Economico.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+                <ChartSeries Name="Factor_Apoyo_Familiar">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Factor_Apoyo_Familiar.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+                <ChartSeries Name="Factor_Pareja">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Factor_Pareja.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+                <ChartSeries Name="Factor_Acceso_Internet">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Factor_Acceso_Internet.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+                <ChartSeries Name="Factor_Salud">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Factor_Salud.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+                <ChartSeries Name="Factor_Tamanio_Familiar">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Factor_Tamanio_Familiar.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+                <ChartSeries Name="Factor_Tiempo_Estudio">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Factor_Tiempo_Estudio.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+                <ChartSeries Name="Factor_Tiempo_Libre">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Factor_Tiempo_Libre.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+                <ChartSeries Name="Factor_Tiempo_Traslado">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Factor_Tiempo_Traslado.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <Border>
+                        <Color>Gainsboro</Color>
+                        <Style>None</Style>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Color>#5c5c5c</Color>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>9pt</FontSize>
+                        <Color>#5c5c5c</Color>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <Style>
+                  <BackgroundColor>#00ffffff</BackgroundColor>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Default">
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+              </ChartLegend>
+            </ChartLegends>
+            <ChartTitles>
+              <ChartTitle Name="Default">
+                <Caption>Influencia de factores para alumnos desaprobados</Caption>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextAlign>Left</TextAlign>
+                  <VerticalAlign>Top</VerticalAlign>
+                  <Color>#a6a6a6</Color>
+                </Style>
+              </ChartTitle>
+            </ChartTitles>
+            <Palette>Pacific</Palette>
+            <ChartBorderSkin>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>Sin datos disponibles</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>Factores</DataSetName>
+            <Height>8.78714cm</Height>
+            <Width>12.93277cm</Width>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </Chart>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>VOLVER</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <ActionInfo>
+              <Actions>
+                <Action>
+                  <Drillthrough>
+                    <ReportName>M1-1-1</ReportName>
+                  </Drillthrough>
+                </Action>
+              </Actions>
+            </ActionInfo>
+            <Top>8.96353cm</Top>
+            <Height>0.68467cm</Height>
+            <Width>1.88616cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <BackgroundColor>Gray</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.46472cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.67056cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Económico</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>Blue</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.67056cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Economico">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Factor_Economico.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>f0</Format>
+                                    <Color>Blue</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Economico</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>1.49816cm</Top>
+            <Left>13.03861cm</Left>
+            <Height>1.34112cm</Height>
+            <Width>2.46472cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.83867cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.67056cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>T. Libre</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>CornflowerBlue</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.67056cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Economico2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Factor_Tiempo_Libre.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>f0</Format>
+                                    <Color>SlateBlue</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Economico</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles2" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>1.49816cm</Top>
+            <Left>15.53861cm</Left>
+            <Height>1.34112cm</Height>
+            <Width>2.83867cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix3">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.46472cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.75875cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox9">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>T. Traslado</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>Maroon</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.75875cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Economico3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Factor_Tiempo_Traslado.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>f0</Format>
+                                    <Color>Maroon</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Economico</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles3" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>2.87455cm</Top>
+            <Left>13.03861cm</Left>
+            <Height>1.5175cm</Height>
+            <Width>2.46472cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix4">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.83867cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.75875cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox10">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Salud</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>SeaGreen</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.75875cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Economico4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Factor_Salud.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>f0</Format>
+                                    <Color>SeaGreen</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Economico</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles4" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>2.87455cm</Top>
+            <Left>15.53861cm</Left>
+            <Height>1.5175cm</Height>
+            <Width>2.83867cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix5">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.5cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.73598cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>T. Estudio</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>Gray</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.73598cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Economico5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Factor_Tiempo_Estudio.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>f0</Format>
+                                    <Color>Gray</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Economico</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles5" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>4.46261cm</Top>
+            <Left>13.03861cm</Left>
+            <Height>1.47196cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix6">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.15617cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.73598cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox12">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Est. Sentimental</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>DarkBlue</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.73598cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Economico6">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Factor_Pareja.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>f0</Format>
+                                    <Color>DarkBlue</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Economico</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles6" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>4.46261cm</Top>
+            <Left>15.53861cm</Left>
+            <Height>1.47196cm</Height>
+            <Width>3.15617cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix7">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.41017cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.7905cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox13">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Acceso a Internet</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>Orange</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.7905cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Economico7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Factor_Acceso_Internet.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>f0</Format>
+                                    <Color>Orange</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Economico</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles7" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>5.96985cm</Top>
+            <Left>13.03861cm</Left>
+            <Height>1.581cm</Height>
+            <Width>3.41017cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix8">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.72767cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.7905cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox14">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Apoyo Familiar</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>Purple</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.7905cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Economico8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Factor_Apoyo_Familiar.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>f0</Format>
+                                    <Color>Purple</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Economico</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles8" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>5.96985cm</Top>
+            <Left>16.48406cm</Left>
+            <Height>1.581cm</Height>
+            <Width>3.72767cm</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix10">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.84925cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.69525cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Acceso_Internet">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIf(
+	((Fields!Factor_Acceso_Internet.Value&gt;=Fields!Factor_Apoyo_Familiar.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&gt;=Fields!Factor_Economico.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&gt;=Fields!Factor_Pareja.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&gt;=Fields!Factor_Salud.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&gt;=Fields!Factor_Tamanio_Familiar.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&gt;=Fields!Factor_Tiempo_Estudio.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&gt;=Fields!Factor_Tiempo_Traslado.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&gt;=Fields!Factor_Tiempo_Libre.Value)	),"Acceso Internet",
+		IIf(((Fields!Factor_Apoyo_Familiar.Value&gt;=Fields!Factor_Acceso_Internet.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&gt;=Fields!Factor_Economico.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&gt;=Fields!Factor_Pareja.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&gt;=Fields!Factor_Salud.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&gt;=Fields!Factor_Tamanio_Familiar.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&gt;=Fields!Factor_Tiempo_Estudio.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&gt;=Fields!Factor_Tiempo_Traslado.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&gt;=Fields!Factor_Tiempo_Libre.Value)	),"Familiar",
+			IIf(((Fields!Factor_Economico.Value&gt;=Fields!Factor_Acceso_Internet.Value) AND
+			(Fields!Factor_Economico.Value&gt;=Fields!Factor_Apoyo_Familiar.Value) AND
+			(Fields!Factor_Economico.Value&gt;=Fields!Factor_Pareja.Value) AND
+			(Fields!Factor_Economico.Value&gt;=Fields!Factor_Salud.Value) AND
+			(Fields!Factor_Economico.Value&gt;=Fields!Factor_Tamanio_Familiar.Value) AND
+			(Fields!Factor_Economico.Value&gt;=Fields!Factor_Tiempo_Estudio.Value) AND
+			(Fields!Factor_Economico.Value&gt;=Fields!Factor_Tiempo_Traslado.Value) AND
+			(Fields!Factor_Economico.Value&gt;=Fields!Factor_Tiempo_Libre.Value)	),"Economico",
+				IIf(((Fields!Factor_Pareja.Value&gt;=Fields!Factor_Acceso_Internet.Value) AND
+				(Fields!Factor_Pareja.Value&gt;=Fields!Factor_Apoyo_Familiar.Value) AND
+				(Fields!Factor_Pareja.Value&gt;=Fields!Factor_Economico.Value) AND
+				(Fields!Factor_Pareja.Value&gt;=Fields!Factor_Salud.Value) AND
+				(Fields!Factor_Pareja.Value&gt;=Fields!Factor_Tamanio_Familiar.Value) AND
+				(Fields!Factor_Pareja.Value&gt;=Fields!Factor_Tiempo_Estudio.Value) AND
+				(Fields!Factor_Pareja.Value&gt;=Fields!Factor_Tiempo_Traslado.Value) AND
+				(Fields!Factor_Pareja.Value&gt;=Fields!Factor_Tiempo_Libre.Value)	),"Pareja",
+					IIf(((Fields!Factor_Salud.Value&gt;=Fields!Factor_Acceso_Internet.Value) AND
+					(Fields!Factor_Salud.Value&gt;=Fields!Factor_Apoyo_Familiar.Value) AND
+					(Fields!Factor_Salud.Value&gt;=Fields!Factor_Economico.Value) AND
+					(Fields!Factor_Salud.Value&gt;=Fields!Factor_Pareja.Value) AND
+					(Fields!Factor_Salud.Value&gt;=Fields!Factor_Tamanio_Familiar.Value) AND
+					(Fields!Factor_Salud.Value&gt;=Fields!Factor_Tiempo_Estudio.Value) AND
+					(Fields!Factor_Salud.Value&gt;=Fields!Factor_Tiempo_Traslado.Value) AND
+					(Fields!Factor_Salud.Value&gt;=Fields!Factor_Tiempo_Libre.Value)	),"Salud",
+						IIf(((Fields!Factor_Tamanio_Familiar.Value&gt;=Fields!Factor_Acceso_Internet.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&gt;=Fields!Factor_Apoyo_Familiar.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&gt;=Fields!Factor_Economico.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&gt;=Fields!Factor_Pareja.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&gt;=Fields!Factor_Salud.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&gt;=Fields!Factor_Tiempo_Estudio.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&gt;=Fields!Factor_Tiempo_Traslado.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&gt;=Fields!Factor_Tiempo_Libre.Value)	),"Tamaño Familiar",
+							IIf(((Fields!Factor_Tiempo_Estudio.Value&gt;=Fields!Factor_Acceso_Internet.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&gt;=Fields!Factor_Apoyo_Familiar.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&gt;=Fields!Factor_Economico.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&gt;=Fields!Factor_Pareja.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&gt;=Fields!Factor_Salud.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&gt;=Fields!Factor_Tamanio_Familiar.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&gt;=Fields!Factor_Tiempo_Traslado.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&gt;=Fields!Factor_Tiempo_Libre.Value)	),"T.Estudio", 
+								IIf(((Fields!Factor_Tiempo_Traslado.Value&gt;=Fields!Factor_Acceso_Internet.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&gt;=Fields!Factor_Apoyo_Familiar.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&gt;=Fields!Factor_Economico.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&gt;=Fields!Factor_Pareja.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&gt;=Fields!Factor_Salud.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&gt;=Fields!Factor_Tamanio_Familiar.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&gt;=Fields!Factor_Tiempo_Estudio.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&gt;=Fields!Factor_Tiempo_Libre.Value)),"T.Traslado","T.Libre"
+					)
+				)
+			)
+		)
+	)			)
+		)
+	)</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>Red</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Acceso_Internet</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="ColumnGroup">
+                    <GroupExpressions>
+                      <GroupExpression />
+                    </GroupExpressions>
+                  </Group>
+                  <TablixHeader>
+                    <Size>0.69525cm</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox32">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Factor Con  Mayor Incidencia</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>Red</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox32</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                </TablixMember>
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>0.07238cm</Top>
+            <Left>13.07389cm</Left>
+            <Height>1.3905cm</Height>
+            <Width>2.84925cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix9">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.24084cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.73598cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Tamaño Familiar</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>DarkBlue</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.73598cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Economico9">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Factor_Tamanio_Familiar.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>f0</Format>
+                                    <Color>DarkBlue</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Economico</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles9" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>4.42733cm</Top>
+            <Left>18.76534cm</Left>
+            <Height>1.47196cm</Height>
+            <Width>3.24084cm</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix11">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.84925cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.69525cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Factor_Acceso_Internet2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIf(
+	((Fields!Factor_Acceso_Internet.Value&lt;=Fields!Factor_Apoyo_Familiar.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&lt;=Fields!Factor_Economico.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&lt;=Fields!Factor_Pareja.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&lt;=Fields!Factor_Salud.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&lt;=Fields!Factor_Tamanio_Familiar.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&lt;=Fields!Factor_Tiempo_Estudio.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&lt;=Fields!Factor_Tiempo_Traslado.Value) AND
+	(Fields!Factor_Acceso_Internet.Value&lt;=Fields!Factor_Tiempo_Libre.Value)	),"Acceso Internet",
+		IIf(((Fields!Factor_Apoyo_Familiar.Value&lt;=Fields!Factor_Acceso_Internet.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&lt;=Fields!Factor_Economico.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&lt;=Fields!Factor_Pareja.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&lt;=Fields!Factor_Salud.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&lt;=Fields!Factor_Tamanio_Familiar.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&lt;=Fields!Factor_Tiempo_Estudio.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&lt;=Fields!Factor_Tiempo_Traslado.Value) AND
+		(Fields!Factor_Apoyo_Familiar.Value&lt;=Fields!Factor_Tiempo_Libre.Value)	),"Familiar",
+			IIf(((Fields!Factor_Economico.Value&lt;=Fields!Factor_Acceso_Internet.Value) AND
+			(Fields!Factor_Economico.Value&lt;=Fields!Factor_Apoyo_Familiar.Value) AND
+			(Fields!Factor_Economico.Value&lt;=Fields!Factor_Pareja.Value) AND
+			(Fields!Factor_Economico.Value&lt;=Fields!Factor_Salud.Value) AND
+			(Fields!Factor_Economico.Value&lt;=Fields!Factor_Tamanio_Familiar.Value) AND
+			(Fields!Factor_Economico.Value&lt;=Fields!Factor_Tiempo_Estudio.Value) AND
+			(Fields!Factor_Economico.Value&lt;=Fields!Factor_Tiempo_Traslado.Value) AND
+			(Fields!Factor_Economico.Value&lt;=Fields!Factor_Tiempo_Libre.Value)	),"Economico",
+				IIf(((Fields!Factor_Pareja.Value&lt;=Fields!Factor_Acceso_Internet.Value) AND
+				(Fields!Factor_Pareja.Value&lt;=Fields!Factor_Apoyo_Familiar.Value) AND
+				(Fields!Factor_Pareja.Value&lt;=Fields!Factor_Economico.Value) AND
+				(Fields!Factor_Pareja.Value&lt;=Fields!Factor_Salud.Value) AND
+				(Fields!Factor_Pareja.Value&lt;=Fields!Factor_Tamanio_Familiar.Value) AND
+				(Fields!Factor_Pareja.Value&lt;=Fields!Factor_Tiempo_Estudio.Value) AND
+				(Fields!Factor_Pareja.Value&lt;=Fields!Factor_Tiempo_Traslado.Value) AND
+				(Fields!Factor_Pareja.Value&lt;=Fields!Factor_Tiempo_Libre.Value)	),"Pareja",
+					IIf(((Fields!Factor_Salud.Value&lt;=Fields!Factor_Acceso_Internet.Value) AND
+					(Fields!Factor_Salud.Value&lt;=Fields!Factor_Apoyo_Familiar.Value) AND
+					(Fields!Factor_Salud.Value&lt;=Fields!Factor_Economico.Value) AND
+					(Fields!Factor_Salud.Value&lt;=Fields!Factor_Pareja.Value) AND
+					(Fields!Factor_Salud.Value&lt;=Fields!Factor_Tamanio_Familiar.Value) AND
+					(Fields!Factor_Salud.Value&lt;=Fields!Factor_Tiempo_Estudio.Value) AND
+					(Fields!Factor_Salud.Value&lt;=Fields!Factor_Tiempo_Traslado.Value) AND
+					(Fields!Factor_Salud.Value&lt;=Fields!Factor_Tiempo_Libre.Value)	),"Salud",
+						IIf(((Fields!Factor_Tamanio_Familiar.Value&lt;=Fields!Factor_Acceso_Internet.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&lt;=Fields!Factor_Apoyo_Familiar.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&lt;=Fields!Factor_Economico.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&lt;=Fields!Factor_Pareja.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&lt;=Fields!Factor_Salud.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&lt;=Fields!Factor_Tiempo_Estudio.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&lt;=Fields!Factor_Tiempo_Traslado.Value) AND
+						(Fields!Factor_Tamanio_Familiar.Value&lt;=Fields!Factor_Tiempo_Libre.Value)	),"Tamaño Familiar",
+							IIf(((Fields!Factor_Tiempo_Estudio.Value&lt;=Fields!Factor_Acceso_Internet.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&lt;=Fields!Factor_Apoyo_Familiar.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&lt;=Fields!Factor_Economico.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&lt;=Fields!Factor_Pareja.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&lt;=Fields!Factor_Salud.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&lt;=Fields!Factor_Tamanio_Familiar.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&lt;=Fields!Factor_Tiempo_Traslado.Value) AND
+							(Fields!Factor_Tiempo_Estudio.Value&lt;=Fields!Factor_Tiempo_Libre.Value)	),"T.Estudio", 
+								IIf(((Fields!Factor_Tiempo_Traslado.Value&lt;=Fields!Factor_Acceso_Internet.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&lt;=Fields!Factor_Apoyo_Familiar.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&lt;=Fields!Factor_Economico.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&lt;=Fields!Factor_Pareja.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&lt;=Fields!Factor_Salud.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&lt;=Fields!Factor_Tamanio_Familiar.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&lt;=Fields!Factor_Tiempo_Estudio.Value) AND
+								(Fields!Factor_Tiempo_Traslado.Value&lt;=Fields!Factor_Tiempo_Libre.Value)),"T.Traslado","T.Libre"
+								)
+							)
+						)
+					)
+				)
+			)
+		)
+	)</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>SeaGreen</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Factor_Acceso_Internet</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="ColumnGroup2">
+                    <GroupExpressions>
+                      <GroupExpression />
+                    </GroupExpressions>
+                  </Group>
+                  <TablixHeader>
+                    <Size>0.69525cm</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox33">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Factor con Menor Incidencia</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>SeaGreen</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox32</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                </TablixMember>
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Factores</DataSetName>
+            <Top>0.07238cm</Top>
+            <Left>15.95841cm</Left>
+            <Height>1.3905cm</Height>
+            <Width>2.84925cm</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="Textbox3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>NOTAS PROMEDIO</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <ActionInfo>
+              <Actions>
+                <Action>
+                  <Drillthrough>
+                    <ReportName>M1-3-1</ReportName>
+                  </Drillthrough>
+                </Action>
+              </Actions>
+            </ActionInfo>
+            <Top>8.96353cm</Top>
+            <Left>7.84035cm</Left>
+            <Height>0.68467cm</Height>
+            <Width>5.09242cm</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <BackgroundColor>Gray</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>3.7985in</Height>
+        <Style />
+      </Body>
+      <Width>10.31609in</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="TIEMPOAnio">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[TIEMPO].[Anio].&amp;[2019]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Anio</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>TIEMPOAnio</DataSetName>
+          <ValueField>ParameterValue</ValueField>
+          <LabelField>ParameterCaptionIndented</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="TIEMPOSemestre">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[TIEMPO].[Semestre].&amp;[1]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Semestre</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>TIEMPOSemestre</DataSetName>
+          <ValueField>ParameterValue</ValueField>
+          <LabelField>ParameterCaptionIndented</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="CICLOValorCiclo">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[CICLO].[ValorCiclo].&amp;[10]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ValorCiclo</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CICLOValorCiclo</DataSetName>
+          <ValueField>ParameterValue</ValueField>
+          <LabelField>ParameterCaptionIndented</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="CARRERANombreCarrera">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[CARRERA].[NombreCarrera].&amp;[2]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>NombreCarrera</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CARRERANombreCarrera</DataSetName>
+          <ValueField>ParameterValue</ValueField>
+          <LabelField>ParameterCaptionIndented</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="CURSONombreCurso">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[CURSO].[NombreCurso].&amp;[5]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>NombreCurso</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CURSONombreCurso</DataSetName>
+          <ValueField>ParameterValue</ValueField>
+          <LabelField>ParameterCaptionIndented</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>TIEMPOAnio</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>TIEMPOSemestre</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>CICLOValorCiclo</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>CARRERANombreCarrera</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>CURSONombreCurso</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>fd1fd8d0-8fda-4e8a-b517-f3206e231475</rd:ReportID>
+</Report>
