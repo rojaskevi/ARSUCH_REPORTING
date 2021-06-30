@@ -1009,43 +1009,6 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Textbox Name="Textbox1">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Exportar Información</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>6.13453cm</Top>
-            <Left>5.3467cm</Left>
-            <Height>0.73378cm</Height>
-            <Width>4.70133cm</Width>
-            <Style>
-              <Border>
-                <Color>Gray</Color>
-                <Style>Solid</Style>
-                <Width>2pt</Width>
-              </Border>
-              <BackgroundColor>Gray</BackgroundColor>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Chart Name="Chart2">
             <ChartCategoryHierarchy>
               <ChartMembers>
@@ -1383,7 +1346,6 @@
             <Top>0.03528cm</Top>
             <Height>5.79586cm</Height>
             <Width>14.73055cm</Width>
-            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -1425,7 +1387,7 @@
             <Left>0.4532cm</Left>
             <Height>0.68467cm</Height>
             <Width>1.88616cm</Width>
-            <ZIndex>2</ZIndex>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1517,7 +1479,7 @@
           <Value>[TIEMPO].[Anio].&amp;[2019]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Anio</Prompt>
+      <Prompt>Año</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>TIEMPOAnio</DataSetName>
@@ -1551,7 +1513,7 @@
           <Value>[CICLO].[ValorCiclo].&amp;[1]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>ValorCiclo</Prompt>
+      <Prompt>Ciclo</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CICLOValorCiclo</DataSetName>
@@ -1568,7 +1530,7 @@
           <Value>[CARRERA].[NombreCarrera].&amp;[2]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>NombreCarrera</Prompt>
+      <Prompt>Carrera</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CARRERANombreCarrera</DataSetName>
@@ -1585,7 +1547,7 @@
           <Value>[CURSO].[NombreCurso].&amp;[5]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>NombreCurso</Prompt>
+      <Prompt>Curso</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CURSONombreCurso</DataSetName>
@@ -1627,7 +1589,7 @@
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfColumns>3</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
@@ -1646,17 +1608,17 @@
           <ParameterName>CICLOValorCiclo</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>0</RowIndex>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
           <ParameterName>CARRERANombreCarrera</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
+          <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>CURSONombreCurso</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>2</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>Satisfaccion</ParameterName>
         </CellDefinition>

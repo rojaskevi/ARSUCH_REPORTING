@@ -9,6 +9,766 @@
       <rd:DataSourceID>b21ccad1-eed6-454c-bf50-5178de044649</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>ARSUCH</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="TIEMPOAnio">
+            <Value>=Parameters!TIEMPOAnio.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="TIEMPOSemestre">
+            <Value>=Parameters!TIEMPOSemestre.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="CICLOValorCiclo">
+            <Value>=Parameters!CICLOValorCiclo.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="CARRERANombreCarrera">
+            <Value>=Parameters!CARRERANombreCarrera.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText> SELECT NON EMPTY { [Measures].[Nota], [Measures].[Sum Asistencia Realizada], [Measures].[Sum Asistencia Registrada] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [CURSO].[Tipo Curso].[Tipo Curso].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>TIEMPO</DimensionName>
+                      <HierarchyName>Anio</HierarchyName>
+                      <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                      <LevelName>Anio</LevelName>
+                      <UniqueName>[TIEMPO].[Anio].[Anio]</UniqueName>
+                    </ID>
+                    <ItemCaption>Anio</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>TIEMPO</DimensionName>
+                      <HierarchyName>Semestre</HierarchyName>
+                      <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                      <LevelName>Semestre</LevelName>
+                      <UniqueName>[TIEMPO].[Semestre].[Semestre]</UniqueName>
+                    </ID>
+                    <ItemCaption>Semestre</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>CICLO</DimensionName>
+                      <HierarchyName>ValorCiclo</HierarchyName>
+                      <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
+                      <LevelName>ValorCiclo</LevelName>
+                      <UniqueName>[CICLO].[ValorCiclo].[ValorCiclo]</UniqueName>
+                    </ID>
+                    <ItemCaption>ValorCiclo</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>CARRERA</DimensionName>
+                      <HierarchyName>NombreCarrera</HierarchyName>
+                      <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
+                      <LevelName>NombreCarrera</LevelName>
+                      <UniqueName>[CARRERA].[NombreCarrera].[NombreCarrera]</UniqueName>
+                    </ID>
+                    <ItemCaption>NombreCarrera</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>CURSO</DimensionName>
+                      <HierarchyName>NombreCurso</HierarchyName>
+                      <HierarchyUniqueName>[CURSO].[NombreCurso]</HierarchyUniqueName>
+                      <LevelName>NombreCurso</LevelName>
+                      <UniqueName>[CURSO].[NombreCurso].[NombreCurso]</UniqueName>
+                    </ID>
+                    <ItemCaption>NombreCurso</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Level">
+                      <DimensionName>CURSO</DimensionName>
+                      <HierarchyName>Tipo Curso</HierarchyName>
+                      <HierarchyUniqueName>[CURSO].[Tipo Curso]</HierarchyUniqueName>
+                      <LevelName>Tipo Curso</LevelName>
+                      <UniqueName>[CURSO].[Tipo Curso].[Tipo Curso]</UniqueName>
+                    </ID>
+                    <ItemCaption>Tipo Curso</ItemCaption>
+                    <UniqueName>true</UniqueName>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Nota</MeasureName>
+                      <UniqueName>[Measures].[Nota]</UniqueName>
+                    </ID>
+                    <ItemCaption>Nota</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Sum Asistencia Realizada</MeasureName>
+                      <UniqueName>[Measures].[Sum Asistencia Realizada]</UniqueName>
+                    </ID>
+                    <ItemCaption>Sum Asistencia Realizada</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>Sum Asistencia Registrada</MeasureName>
+                      <UniqueName>[Measures].[Sum Asistencia Registrada]</UniqueName>
+                    </ID>
+                    <ItemCaption>Sum Asistencia Registrada</ItemCaption>
+                    <BackColor>true</BackColor>
+                    <ForeColor>true</ForeColor>
+                    <FontFamily>true</FontFamily>
+                    <FontSize>true</FontSize>
+                    <FontWeight>true</FontWeight>
+                    <FontStyle>true</FontStyle>
+                    <FontDecoration>true</FontDecoration>
+                    <FormattedValue>true</FormattedValue>
+                    <FormatString>true</FormatString>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboSatisfaccionPedagogica</From>
+              <Filter>
+                <FilterItems>
+                  <FilterItem>
+                    <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[TIEMPO].[Anio].&amp;[2019]</MemberUniqueName>
+                        </Member>
+                      </Members>
+                      <Parametrized>true</Parametrized>
+                    </Condition>
+                  </FilterItem>
+                  <FilterItem>
+                    <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[TIEMPO].[Semestre].&amp;[1]</MemberUniqueName>
+                        </Member>
+                      </Members>
+                      <Parametrized>true</Parametrized>
+                    </Condition>
+                  </FilterItem>
+                  <FilterItem>
+                    <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[CICLO].[ValorCiclo].&amp;[1]</MemberUniqueName>
+                        </Member>
+                      </Members>
+                      <Parametrized>true</Parametrized>
+                    </Condition>
+                  </FilterItem>
+                  <FilterItem>
+                    <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
+                    <Condition xsi:type="EqualTo">
+                      <Members>
+                        <Member>
+                          <MemberUniqueName>[CARRERA].[NombreCarrera].[TODOS]</MemberUniqueName>
+                        </Member>
+                      </Members>
+                      <Parametrized>true</Parametrized>
+                    </Condition>
+                  </FilterItem>
+                </FilterItems>
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties>
+                <IncludeMemberValue>true</IncludeMemberValue>
+              </QueryProperties>
+            </QuerySpecification>
+            <Query>
+              <Statement> SELECT NON EMPTY { [Measures].[Nota], [Measures].[Sum Asistencia Realizada], [Measures].[Sum Asistencia Registrada] } ON COLUMNS, NON EMPTY { ([TIEMPO].[Anio].[Anio].ALLMEMBERS * [TIEMPO].[Semestre].[Semestre].ALLMEMBERS * [CICLO].[ValorCiclo].[ValorCiclo].ALLMEMBERS * [CARRERA].[NombreCarrera].[NombreCarrera].ALLMEMBERS * [CURSO].[NombreCurso].[NombreCurso].ALLMEMBERS * [CURSO].[Tipo Curso].[Tipo Curso].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@CARRERANombreCarrera, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
+              <ParameterDefinitions>
+                <ParameterDefinition>
+                  <Name>TIEMPOAnio</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Anio].&amp;[2019]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Anio</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboSatisfaccionPedagogica]</Statement>
+                    <ParameterizedStatement>
+                      <ReferencedParameters />
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>TIEMPOSemestre</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Semestre].&amp;[1]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Semestre</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>CICLOValorCiclo</Name>
+                  <DefaultValues>
+                    <DefaultValue>[CICLO].[ValorCiclo].&amp;[1]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>ValorCiclo</Caption>
+                  <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>TIEMPOSemestre</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>CARRERANombreCarrera</Name>
+                  <DefaultValues>
+                    <DefaultValue>[CARRERA].[NombreCarrera].[TODOS]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>NombreCarrera</Caption>
+                  <HierarchyUniqueName>[CARRERA].[NombreCarrera]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>TIEMPOSemestre</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>CICLOValorCiclo</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+              </ParameterDefinitions>
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="Anio">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Anio].[Anio]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Semestre">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[TIEMPO].[Semestre].[Semestre]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ValorCiclo">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CICLO].[ValorCiclo].[ValorCiclo]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreCarrera">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CARRERA].[NombreCarrera].[NombreCarrera]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreCurso">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CURSO].[NombreCurso].[NombreCurso]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tipo_Curso">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[CURSO].[Tipo Curso].[Tipo Curso]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Nota">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Nota]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Sum_Asistencia_Realizada">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Sum Asistencia Realizada]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Sum_Asistencia_Registrada">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Sum Asistencia Registrada]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="TIEMPOAnio">
+      <Query>
+        <DataSourceName>ARSUCH</DataSourceName>
+        <CommandText>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboSatisfaccionPedagogica]</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <Type>Query</Type>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterCaption</MeasureName>
+                      <UniqueName>[Measures].[ParameterCaption]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterCaption</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterValue</MeasureName>
+                      <UniqueName>[Measures].[ParameterValue]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterValue</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterLevel</MeasureName>
+                      <UniqueName>[Measures].[ParameterLevel]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterLevel</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboSatisfaccionPedagogica</From>
+              <Filter>
+                <FilterItems />
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboSatisfaccionPedagogica]</Statement>
+              <ParameterDefinitions />
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+        <rd:AutoGenerated>true</rd:AutoGenerated>
+        <rd:Hidden>true</rd:Hidden>
+      </Query>
+      <Fields>
+        <Field Name="ParameterCaption">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterCaption]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterValue">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterValue]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterLevel">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterLevel]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterCaptionIndented">
+          <Value>=Space(3*Fields!ParameterLevel.Value) + Fields!ParameterCaption.Value</Value>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="TIEMPOSemestre">
+      <Query>
+        <DataSourceName>ARSUCH</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="TIEMPOAnio">
+            <Value>=Parameters!TIEMPOAnio.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <Type>Query</Type>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterCaption</MeasureName>
+                      <UniqueName>[Measures].[ParameterCaption]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterCaption</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterValue</MeasureName>
+                      <UniqueName>[Measures].[ParameterValue]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterValue</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterLevel</MeasureName>
+                      <UniqueName>[Measures].[ParameterLevel]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterLevel</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboSatisfaccionPedagogica</From>
+              <Filter>
+                <FilterItems />
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
+              <ParameterDefinitions>
+                <ParameterDefinition>
+                  <Name>TIEMPOAnio</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Anio].&amp;[2019]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Anio</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboSatisfaccionPedagogica]</Statement>
+                    <ParameterizedStatement>
+                      <ReferencedParameters />
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+              </ParameterDefinitions>
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+        <rd:AutoGenerated>true</rd:AutoGenerated>
+        <rd:Hidden>true</rd:Hidden>
+      </Query>
+      <Fields>
+        <Field Name="ParameterCaption">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterCaption]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterValue">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterValue]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterLevel">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterLevel]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterCaptionIndented">
+          <Value>=Space(3*Fields!ParameterLevel.Value) + Fields!ParameterCaption.Value</Value>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CICLOValorCiclo">
+      <Query>
+        <DataSourceName>ARSUCH</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="TIEMPOAnio">
+            <Value>=Parameters!TIEMPOAnio.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="TIEMPOSemestre">
+            <Value>=Parameters!TIEMPOSemestre.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <Type>Query</Type>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterCaption</MeasureName>
+                      <UniqueName>[Measures].[ParameterCaption]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterCaption</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterValue</MeasureName>
+                      <UniqueName>[Measures].[ParameterValue]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterValue</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterLevel</MeasureName>
+                      <UniqueName>[Measures].[ParameterLevel]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterLevel</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboSatisfaccionPedagogica</From>
+              <Filter>
+                <FilterItems />
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</Statement>
+              <ParameterDefinitions>
+                <ParameterDefinition>
+                  <Name>TIEMPOAnio</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Anio].&amp;[2019]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Anio</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboSatisfaccionPedagogica]</Statement>
+                    <ParameterizedStatement>
+                      <ReferencedParameters />
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>TIEMPOSemestre</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Semestre].&amp;[1]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Semestre</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+              </ParameterDefinitions>
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+        <rd:AutoGenerated>true</rd:AutoGenerated>
+        <rd:Hidden>true</rd:Hidden>
+      </Query>
+      <Fields>
+        <Field Name="ParameterCaption">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterCaption]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterValue">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterValue]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterLevel">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterLevel]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterCaptionIndented">
+          <Value>=Space(3*Fields!ParameterLevel.Value) + Fields!ParameterCaption.Value</Value>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CARRERANombreCarrera">
+      <Query>
+        <DataSourceName>ARSUCH</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="TIEMPOAnio">
+            <Value>=Parameters!TIEMPOAnio.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="TIEMPOSemestre">
+            <Value>=Parameters!TIEMPOSemestre.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="CICLOValorCiclo">
+            <Value>=Parameters!CICLOValorCiclo.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
+            <CommandType>MDX</CommandType>
+            <Type>Query</Type>
+            <QuerySpecification xsi:type="MDXQuerySpecification">
+              <Select>
+                <Items>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterCaption</MeasureName>
+                      <UniqueName>[Measures].[ParameterCaption]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterCaption</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterValue</MeasureName>
+                      <UniqueName>[Measures].[ParameterValue]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterValue</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                  <Item>
+                    <ID xsi:type="Measure">
+                      <MeasureName>ParameterLevel</MeasureName>
+                      <UniqueName>[Measures].[ParameterLevel]</UniqueName>
+                    </ID>
+                    <ItemCaption>ParameterLevel</ItemCaption>
+                    <FormattedValue>true</FormattedValue>
+                  </Item>
+                </Items>
+              </Select>
+              <AutoExecute>false</AutoExecute>
+              <From>CuboSatisfaccionPedagogica</From>
+              <Filter>
+                <FilterItems />
+              </Filter>
+              <Calculations />
+              <Aggregates />
+              <QueryProperties />
+            </QuerySpecification>
+            <Query>
+              <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CARRERA].[NombreCarrera].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CARRERA].[NombreCarrera].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@CICLOValorCiclo, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])))</Statement>
+              <ParameterDefinitions>
+                <ParameterDefinition>
+                  <Name>TIEMPOAnio</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Anio].&amp;[2019]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Anio</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Anio]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Anio].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Anio].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Anio].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Anio].ALLMEMBERS ON ROWS FROM [CuboSatisfaccionPedagogica]</Statement>
+                    <ParameterizedStatement>
+                      <ReferencedParameters />
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>TIEMPOSemestre</Name>
+                  <DefaultValues>
+                    <DefaultValue>[TIEMPO].[Semestre].&amp;[1]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>Semestre</Caption>
+                  <HierarchyUniqueName>[TIEMPO].[Semestre]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [TIEMPO].[Semestre].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [TIEMPO].[Semestre].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [TIEMPO].[Semestre].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [TIEMPO].[Semestre].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica])</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+                <ParameterDefinition>
+                  <Name>CICLOValorCiclo</Name>
+                  <DefaultValues>
+                    <DefaultValue>[CICLO].[ValorCiclo].&amp;[1]</DefaultValue>
+                  </DefaultValues>
+                  <Caption>ValorCiclo</Caption>
+                  <HierarchyUniqueName>[CICLO].[ValorCiclo]</HierarchyUniqueName>
+                  <ParameterValuesQuery>
+                    <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</Statement>
+                    <ParameterizedStatement>
+                      <Statement>WITH MEMBER [Measures].[ParameterCaption] AS [CICLO].[ValorCiclo].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [CICLO].[ValorCiclo].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [CICLO].[ValorCiclo].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [CICLO].[ValorCiclo].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@TIEMPOSemestre, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@TIEMPOAnio, CONSTRAINED) ) ON COLUMNS FROM [CuboSatisfaccionPedagogica]))</Statement>
+                      <ReferencedParameters>
+                        <ReferencedParameter>
+                          <Name>TIEMPOAnio</Name>
+                        </ReferencedParameter>
+                        <ReferencedParameter>
+                          <Name>TIEMPOSemestre</Name>
+                        </ReferencedParameter>
+                      </ReferencedParameters>
+                    </ParameterizedStatement>
+                  </ParameterValuesQuery>
+                  <MultipleValues>true</MultipleValues>
+                </ParameterDefinition>
+              </ParameterDefinitions>
+            </Query>
+          </QueryDefinition>
+        </rd:DesignerState>
+        <rd:AutoGenerated>true</rd:AutoGenerated>
+        <rd:Hidden>true</rd:Hidden>
+      </Query>
+      <Fields>
+        <Field Name="ParameterCaption">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterCaption]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterValue">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterValue]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterLevel">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[ParameterLevel]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ParameterCaptionIndented">
+          <Value>=Space(3*Fields!ParameterLevel.Value) + Fields!ParameterCaption.Value</Value>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -32,8 +792,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>3.75975cm</Top>
-            <Left>6.11337cm</Left>
+            <Top>5.81292cm</Top>
+            <Left>9.47887cm</Left>
             <Height>0.73378cm</Height>
             <Width>4.70133cm</Width>
             <Style>
@@ -78,7 +838,7 @@
                 </Action>
               </Actions>
             </ActionInfo>
-            <Top>3.92908cm</Top>
+            <Top>5.81292cm</Top>
             <Left>0.33206cm</Left>
             <Height>0.56445cm</Height>
             <Width>1.8015cm</Width>
@@ -97,41 +857,26 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox1">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>CARGA DE PDF A MOSTRAR</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.58534cm</Top>
-            <Left>2.00237cm</Left>
-            <Height>0.93867cm</Height>
-            <Width>5.46333cm</Width>
+          <Image Name="Image1">
+            <Source>Embedded</Source>
+            <Value>WhatsAppImage20210618at221757</Value>
+            <Sizing>FitProportional</Sizing>
+            <Top>0.17639cm</Top>
+            <Left>0.7112cm</Left>
+            <Height>5.27445cm</Height>
+            <Width>13.469cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
             </Style>
-          </Textbox>
+          </Image>
         </ReportItems>
-        <Height>2.04167in</Height>
+        <Height>4.82944in</Height>
         <Style />
       </Body>
-      <Width>6.24109in</Width>
+      <Width>5.86609in</Width>
       <Page>
         <PageHeader>
           <Height>1.03603cm</Height>
@@ -185,12 +930,175 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="TIEMPOAnio">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[TIEMPO].[Anio].&amp;[2019]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Anio</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>TIEMPOAnio</DataSetName>
+          <ValueField>ParameterValue</ValueField>
+          <LabelField>ParameterCaptionIndented</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="TIEMPOSemestre">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[TIEMPO].[Semestre].&amp;[1]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Semestre</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>TIEMPOSemestre</DataSetName>
+          <ValueField>ParameterValue</ValueField>
+          <LabelField>ParameterCaptionIndented</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="CICLOValorCiclo">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[CICLO].[ValorCiclo].&amp;[1]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ValorCiclo</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CICLOValorCiclo</DataSetName>
+          <ValueField>ParameterValue</ValueField>
+          <LabelField>ParameterCaptionIndented</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="CARRERANombreCarrera">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[CARRERA].[NombreCarrera].[TODOS]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>NombreCarrera</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CARRERANombreCarrera</DataSetName>
+          <ValueField>ParameterValue</ValueField>
+          <LabelField>ParameterCaptionIndented</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfColumns>3</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>TIEMPOAnio</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>TIEMPOSemestre</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>CICLOValorCiclo</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>CARRERANombreCarrera</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <EmbeddedImages>
+    <EmbeddedImage Name="Screenshot_1">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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
+rkJggg==</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="WhatsAppImage20210618at221757">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>9566f739-dfe2-4102-b9a0-1bc6cb53c732</rd:ReportID>
 </Report>

@@ -1139,10 +1139,12 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Factor_Economico.Value)</Y>
+                        <Y>=Round(Sum(Fields!Factor_Economico.Value),0)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
-                        <Style />
+                        <Style>
+                          <Format>0.00%</Format>
+                        </Style>
                         <UseValueAsLabel>true</UseValueAsLabel>
                         <Visible>true</Visible>
                       </ChartDataLabel>
@@ -1175,7 +1177,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Factor_Apoyo_Familiar.Value)</Y>
+                        <Y>=Round(Sum(Fields!Factor_Apoyo_Familiar.Value),0)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1211,7 +1213,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Factor_Pareja.Value)</Y>
+                        <Y>=Round(Sum(Fields!Factor_Pareja.Value),0)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1247,7 +1249,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Factor_Acceso_Internet.Value)</Y>
+                        <Y>=Round(Sum(Fields!Factor_Acceso_Internet.Value),0)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1283,7 +1285,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Factor_Salud.Value)</Y>
+                        <Y>=Round(Sum(Fields!Factor_Salud.Value),0)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1319,7 +1321,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Factor_Tamanio_Familiar.Value)</Y>
+                        <Y>=Round(Sum(Fields!Factor_Tamanio_Familiar.Value),0)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1355,7 +1357,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Factor_Tiempo_Estudio.Value)</Y>
+                        <Y>=Round(Sum(Fields!Factor_Tiempo_Estudio.Value),0)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1391,7 +1393,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Factor_Tiempo_Libre.Value)</Y>
+                        <Y>=Round(Sum(Fields!Factor_Tiempo_Libre.Value),0)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1427,7 +1429,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Factor_Tiempo_Traslado.Value)</Y>
+                        <Y>=Round(Sum(Fields!Factor_Tiempo_Traslado.Value),0)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -3310,7 +3312,7 @@
           <Value>[TIEMPO].[Anio].&amp;[2019]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Anio</Prompt>
+      <Prompt>Año</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>TIEMPOAnio</DataSetName>
@@ -3344,7 +3346,7 @@
           <Value>[CICLO].[ValorCiclo].&amp;[10]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>ValorCiclo</Prompt>
+      <Prompt>Ciclo</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CICLOValorCiclo</DataSetName>
@@ -3361,7 +3363,7 @@
           <Value>[CARRERA].[NombreCarrera].&amp;[2]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>NombreCarrera</Prompt>
+      <Prompt>Carrera</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CARRERANombreCarrera</DataSetName>
@@ -3378,7 +3380,7 @@
           <Value>[CURSO].[NombreCurso].&amp;[5]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>NombreCurso</Prompt>
+      <Prompt>Curso</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CURSONombreCurso</DataSetName>
@@ -3391,7 +3393,7 @@
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfColumns>3</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
@@ -3410,12 +3412,12 @@
           <ParameterName>CICLOValorCiclo</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>0</RowIndex>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
           <ParameterName>CARRERANombreCarrera</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
+          <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>CURSONombreCurso</ParameterName>
         </CellDefinition>

@@ -1112,41 +1112,6 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Textbox Name="Textbox2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>VOLVER</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>8.87209cm</Top>
-            <Height>0.68467cm</Height>
-            <Width>1.88616cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-              <BackgroundColor>Gray</BackgroundColor>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Tablix Name="Tablix8">
             <TablixCorner>
               <TablixCornerRows>
@@ -1339,7 +1304,7 @@
             <Left>13.13209cm</Left>
             <Height>1.55984cm</Height>
             <Width>3.16145cm</Width>
-            <ZIndex>2</ZIndex>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1538,7 +1503,7 @@
             <Left>13.13209cm</Left>
             <Height>1.55984cm</Height>
             <Width>3.16146cm</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1737,7 +1702,7 @@
             <Left>13.13209cm</Left>
             <Height>1.55984cm</Height>
             <Width>3.16146cm</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1936,7 +1901,7 @@
             <Left>13.13209cm</Left>
             <Height>1.55984cm</Height>
             <Width>3.16146cm</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2136,7 +2101,7 @@
             <Left>13.13209cm</Left>
             <Height>1.55984cm</Height>
             <Width>3.16146cm</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2175,7 +2140,7 @@
             <Left>7.74229cm</Left>
             <Height>0.68467cm</Height>
             <Width>2.41533cm</Width>
-            <ZIndex>7</ZIndex>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2220,7 +2185,7 @@
             <Left>10.33401cm</Left>
             <Height>0.68467cm</Height>
             <Width>2.41533cm</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2258,7 +2223,7 @@
           <Value>[TIEMPO].[Anio].&amp;[2019]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Anio</Prompt>
+      <Prompt>Año</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>TIEMPOAnio</DataSetName>
@@ -2292,7 +2257,7 @@
           <Value>[CICLO].[ValorCiclo].&amp;[4]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>ValorCiclo</Prompt>
+      <Prompt>Ciclo</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CICLOValorCiclo</DataSetName>
@@ -2309,7 +2274,7 @@
           <Value>[CARRERA].[NombreCarrera].&amp;[1]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>NombreCarrera</Prompt>
+      <Prompt>Carrera</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CARRERANombreCarrera</DataSetName>
@@ -2322,7 +2287,7 @@
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfColumns>3</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
@@ -2341,8 +2306,8 @@
           <ParameterName>CICLOValorCiclo</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>0</RowIndex>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
           <ParameterName>CARRERANombreCarrera</ParameterName>
         </CellDefinition>
       </CellDefinitions>

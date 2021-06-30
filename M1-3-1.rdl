@@ -1230,7 +1230,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Notas Promedio del Curso de Tesis</Caption>
+                <Caption>Notas Promedio</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -1271,78 +1271,6 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Textbox Name="Textbox3">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>PETICION DE REFUERZO</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.17639cm</Top>
-            <Left>11.2376cm</Left>
-            <Height>1.27734cm</Height>
-            <Width>4.19333cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-              <BackgroundColor>Gray</BackgroundColor>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox4">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ENVIAR COMUNICADO</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>1.78301cm</Top>
-            <Left>11.2376cm</Left>
-            <Height>0.87517cm</Height>
-            <Width>4.19333cm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-              <BackgroundColor>Gray</BackgroundColor>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox5">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -1371,11 +1299,11 @@
                 </Action>
               </Actions>
             </ActionInfo>
-            <Top>3.08477cm</Top>
-            <Left>11.2376cm</Left>
+            <Top>0.17639cm</Top>
+            <Left>11.08422cm</Left>
             <Height>1.46784cm</Height>
             <Width>4.19333cm</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1392,7 +1320,7 @@
         <Height>2.50684in</Height>
         <Style />
       </Body>
-      <Width>6.33275in</Width>
+      <Width>6.11608in</Width>
       <Page>
         <PageHeader>
           <Height>1.524cm</Height>
@@ -1513,7 +1441,7 @@
           <Value>[TIEMPO].[Anio].&amp;[2019]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Anio</Prompt>
+      <Prompt>Año</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>TIEMPOAnio</DataSetName>
@@ -1545,7 +1473,7 @@
           <Value>[CICLO].[ValorCiclo].&amp;[7]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>ValorCiclo</Prompt>
+      <Prompt>Ciclo</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CICLOValorCiclo</DataSetName>
@@ -1562,7 +1490,7 @@
           <Value>[CARRERA].[NombreCarrera].&amp;[2]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>NombreCarrera</Prompt>
+      <Prompt>Carrera</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CARRERANombreCarrera</DataSetName>
@@ -1579,7 +1507,7 @@
           <Value>[CURSO].[NombreCurso].[TODOS]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>NombreCurso</Prompt>
+      <Prompt>Curso</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CURSONombreCurso</DataSetName>

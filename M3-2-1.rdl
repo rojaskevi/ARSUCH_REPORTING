@@ -1212,7 +1212,7 @@
           <Value>[TIEMPO].[Anio].&amp;[2019]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Anio</Prompt>
+      <Prompt>Año</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>TIEMPOAnio</DataSetName>
@@ -1246,7 +1246,7 @@
           <Value>[CICLO].[ValorCiclo].&amp;[10]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>ValorCiclo</Prompt>
+      <Prompt>Ciclo</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CICLOValorCiclo</DataSetName>
@@ -1263,7 +1263,7 @@
           <Value>[CARRERA].[NombreCarrera].&amp;[2]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>NombreCarrera</Prompt>
+      <Prompt>Carrera</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CARRERANombreCarrera</DataSetName>
@@ -1276,7 +1276,7 @@
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfColumns>3</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>

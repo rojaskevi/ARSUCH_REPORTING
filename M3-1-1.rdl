@@ -1044,28 +1044,9 @@
                 </Style>
               </ChartArea>
             </ChartAreas>
-            <ChartLegends>
-              <ChartLegend Name="Default">
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontSize>8pt</FontSize>
-                </Style>
-                <Position>TopLeft</Position>
-                <ChartLegendTitle>
-                  <Caption />
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </ChartLegendTitle>
-                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
-                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
-              </ChartLegend>
-            </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Título del gráfico</Caption>
+                <Caption>Cantidad de Estudiantes con Riesgo de desaprobar</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -1095,9 +1076,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>ResultadoPorCurso</DataSetName>
-            <Top>0.03528cm</Top>
             <Height>7.4765cm</Height>
-            <Width>15.6915cm</Width>
+            <Width>21.32283cm</Width>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -1205,7 +1185,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Alumnos a Reprobar</Value>
+                                <Value>Alumnos por Reprobar</Value>
                                 <Style>
                                   <FontSize>11pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
@@ -1291,8 +1271,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ResultadoPorCurso</DataSetName>
-            <Top>0.10583cm</Top>
-            <Left>15.76206cm</Left>
+            <Top>0.16757cm</Top>
+            <Left>21.79555cm</Left>
             <Height>1.47516cm</Height>
             <Width>5.59266cm</Width>
             <ZIndex>1</ZIndex>
@@ -1425,6 +1405,9 @@
                       </Textbox>
                     </CellContents>
                   </TablixHeader>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                  </Visibility>
                 </TablixMember>
               </TablixMembers>
             </TablixColumnHierarchy>
@@ -1452,7 +1435,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>2.79633cm</Size>
+                    <Size>5.59266cm</Size>
                     <CellContents>
                       <Textbox Name="NombreCurso1">
                         <CanGrow>true</CanGrow>
@@ -1486,10 +1469,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ResultadoPorCurso</DataSetName>
-            <Top>1.72211cm</Top>
-            <Left>15.76206cm</Left>
+            <Top>1.78385cm</Top>
+            <Left>21.79555cm</Left>
             <Height>1.47516cm</Height>
-            <Width>5.59266cm</Width>
+            <Width>8.38899cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1498,10 +1481,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.97351in</Height>
+        <Height>2.99435in</Height>
         <Style />
       </Body>
-      <Width>10.78276in</Width>
+      <Width>12.04201in</Width>
       <Page>
         <PageHeader>
           <Height>0.02646cm</Height>
@@ -1514,7 +1497,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.762cm</Height>
+          <Height>1.3335cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1546,7 +1529,8 @@
                   </Action>
                 </Actions>
               </ActionInfo>
-              <Top>0.07056cm</Top>
+              <Top>0.10583cm</Top>
+              <Left>3.06917cm</Left>
               <Height>0.60678cm</Height>
               <Width>15.26583cm</Width>
               <Style>
@@ -1589,7 +1573,7 @@
           <Value>[TIEMPO].[Anio].&amp;[2019]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Anio</Prompt>
+      <Prompt>Año</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>TIEMPOAnio</DataSetName>
@@ -1623,7 +1607,7 @@
           <Value>[CICLO].[ValorCiclo].&amp;[10]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>ValorCiclo</Prompt>
+      <Prompt>Ciclo</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CICLOValorCiclo</DataSetName>
@@ -1640,7 +1624,7 @@
           <Value>[CARRERA].[NombreCarrera].&amp;[2]</Value>
         </Values>
       </DefaultValue>
-      <Prompt>NombreCarrera</Prompt>
+      <Prompt>Carrera</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>CARRERANombreCarrera</DataSetName>
@@ -1653,7 +1637,7 @@
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfColumns>3</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
@@ -1672,8 +1656,8 @@
           <ParameterName>CICLOValorCiclo</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>0</RowIndex>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
           <ParameterName>CARRERANombreCarrera</ParameterName>
         </CellDefinition>
       </CellDefinitions>
